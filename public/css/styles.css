@@ -1,0 +1,308 @@
+
+.background {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    filter: brightness(0.8);
+}
+.floating-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.circle {
+position: absolute;
+width: 70px;
+height: 70px;
+border-radius: 50%;
+overflow: hidden; /* Ensures the image stays within the circle */
+border: 2px solid rgba(255, 255, 255, 0.2);
+box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+animation: float 6s infinite ease-in-out;
+transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+cursor: pointer;
+animation: float 6s infinite ease-in-out, fadeIn 1.5s ease-out forwards; /* Added fadeIn animation */
+opacity: 0; /* Start invisible */
+
+}
+@keyframes fadeIn {
+from {
+opacity: 0;
+}
+to {
+opacity: 1;
+}
+}
+.circle img {
+width: 100%;
+height: 100%;
+object-fit: cover; /* Ensures the image covers the circle without distortion */
+transition: transform 0.3s;
+}
+
+.circle:hover img {
+transform: scale(1.2); /* Zoom effect on hover */
+}
+.circle:hover {
+    transform: scale(1.3);
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.2);
+}
+.info {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.5s;
+    transform: translateY(20px);
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    pointer-events: none;
+    width: 200px;
+    text-align: left;
+}
+.circle:hover + .info {
+    opacity: 1;
+    transform: translateY(0);
+}
+.info h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+.info p {
+    margin: 5px 0 0;
+    font-size: 14px;
+}
+.title-container {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    color: white;
+    opacity: 0; /* Start invisible */
+    animation: slideUp 1.5s ease-out 0.5s forwards; /* Animation */
+    width: 30%;
+
+}
+
+.title-container h1 {
+    margin: 0;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.title-container p {
+    margin: 10px 0 0;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Animation Keyframes */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.wrapper {
+    position: fixed;
+    top: 80%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    --black: #000000;
+    --ch-black: #141414;
+    --eer-black: #1b1b1b;
+    --night-rider: #2e2e2e;
+    --white: #ffffff;
+    --af-white: #f3f3f3;
+    --ch-white: #e1e1e1;
+    z-index: 4;
+  }
+  
+  footer .demo {
+    position: absolute;
+    bottom: 10px;
+    width: 500px;
+    margin: 0 auto;
+  }
+  
+  footer .demo a {
+    text-align: center;
+    color: var(--black);
+    text-decoration: none;
+    font-weight: 100;
+    border-bottom: 1px solid var(--black);
+  }
+  
+  .cc {
+    display: block;
+    position: relative;
+    padding: 0;
+    z-index: 98;
+    margin: 0 auto;
+    -webkit-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    background-color: var(--night-rider);
+    transition: 0.2s;
+    text-align: center;
+  }
+  
+  .cc:active {
+    transform: scale(0.9);
+    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.3);
+  }
+  
+  .cc:hover {
+    cursor: pointer;
+    background-color: var(--night-rider);
+    box-shadow: 0 8px 15px 0 rgba(0, 0, 0, 0.3);
+  }
+  
+  .cc .svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -15px;
+    margin-top: -15px;
+    width: 30px;
+    height: 30px;
+    transition: 0.5s;
+    transform: rotate(180deg);
+  }
+  
+  .sub-cc {
+    z-index: 0;
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+    transition: 0.3s;
+    transform: scale(0.5);
+    opacity: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+    border: none;
+
+  }
+  .sub-cc:hover {
+    transform: scale(1.5); /* Enlarge the circle */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    background-color: #f0f0f0; /* Light gray on hover */
+    border: 2px solid #ddd; /* Add a soft border */
+}
+  .sub-cc label {
+    background-color: var(--eer-black);
+    display: block;
+    color: var(--eer-black);
+    width: 100%;
+    height: 100%;
+    line-height: 40px;
+    transition: .5s;
+  }
+  .sub-cc label img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensure the flag image covers the circle */
+      border-radius: 50%; /* Make the image circular */
+  }
+  
+  
+  .sub-cc label:hover {
+    cursor: pointer;
+    background-color: var(--eer-black);
+  }
+  
+  .subs {
+    left: -20px;
+    top: -50px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    z-index: 0;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .hidden-sub-trigger {
+    display: none;
+  }
+  
+  .hidden-sub-trigger:checked ~ label {
+    background-color: var(--black);
+  }
+  
+  .hidden-trigger {
+    display: none;
+  }
+  
+  .hidden-trigger:checked ~ .cc {
+    transform: scale(0.9);
+    cursor: pointer;
+    background-color: var(--black);
+    box-shadow: 0 8px 15px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .hidden-trigger:checked ~ .cc .svg {
+    transform: rotate(45deg);
+  }
+  
+  .hidden-trigger:checked ~ .subs button:nth-of-type(1) {
+    transform: translate(0px, -100px) scale(1);
+    opacity: 1;
+    transition: 0.1s;
+  }
+  
+  .hidden-trigger:checked ~ .subs button:nth-of-type(2) {
+    transform: translate(75px, -75px) scale(1);
+    opacity: 1;
+    transition: 0.2s;
+  }
+  
+  .hidden-trigger:checked ~ .subs button:nth-of-type(3) {
+    transform: translate(100px, 0px) scale(1);
+    opacity: 1;
+    transition: 0.3s;
+  }
+  
+  .hidden-trigger:checked ~ .subs button:nth-of-type(4) {
+    transform: translate(75px, 75px) scale(1);
+    opacity: 1;
+    transition: 0.4s;
+  }
+  
+  .hidden-trigger:checked ~ .subs button:nth-of-type(5) {
+    transform: translate(0px, 100px) scale(1);
+    opacity: 1;
+    transition: 0.5s;
+  }
+  
+  .hidden-trigger:checked ~ .subs button:nth-of-type(6) {
+    transform: translate(-75px, 75px) scale(1);
+    opacity: 1;
+    transition: 0.6s;
+  }
+  
+  .hidden-trigger:checked ~ .subs button:nth-of-type(7) {
+    transform: translate(-100px, 0px) scale(1);
+    opacity: 1;
+    transition: 0.7s;
+  }
+  
+  .hidden-trigger:checked ~ .subs button:nth-of-type(8) {
+    transform: translate(-75px, -75px) scale(1);
+    opacity: 1;
+    transition: 0.8s;
+  }
