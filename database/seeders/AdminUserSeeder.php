@@ -9,10 +9,11 @@ class AdminUserSeeder extends Seeder
 {
     public function run()
     {
+
         AdminUser::create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
-            'password' => Hash::make('pmm123'), // ✅ Hashing password
+            'name' => 'eight_user',
+            'email' => 'admin@eight-countries.com',
+            'password' => Hash::make('cwb8usr$2025'), // ✅ Hashing password
         ]);
     }
 }
