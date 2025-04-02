@@ -16,49 +16,49 @@
   
   <div class="subs">
     <button class="sub-cc">
-        <input value="1" name="sub-circle" type="radio" id="sub1" class="hidden-sub-trigger">
+        <input value="1" name="sub-circle" type="radio" id="sub1" class="hidden-sub-trigger"  onclick="goToPage('japan')">
         <label for="sub1">
             <img src="{{ asset('img/flags/japan.png') }}" alt="Japan Flag">
         </label>
     </button>
     <button class="sub-cc">
-        <input value="1" name="sub-circle" type="radio" id="sub2" class="hidden-sub-trigger">
+        <input value="1" name="sub-circle" type="radio" id="sub2" class="hidden-sub-trigger"  onclick="goToPage('philippines')">
         <label for="sub2">
-            <img src="{{ asset('img/flags/phillipine.png') }}" alt="Vietnam Flag">
+            <img src="{{ asset('img/flags/phillipine.png') }}" alt="Philippines Flag">
         </label>
     </button>
     <button class="sub-cc">
-        <input value="1" name="sub-circle" type="radio" id="sub3" class="hidden-sub-trigger">
+        <input value="1" name="sub-circle" type="radio" id="sub3" class="hidden-sub-trigger"  onclick="goToPage('indonesia')">
         <label for="sub3">
             <img src="{{ asset('img/flags/indonesia.jpg') }}" alt="Indonesia Flag">
         </label>
     </button>
     <button class="sub-cc">
-        <input value="1" name="sub-circle" type="radio" id="sub4" class="hidden-sub-trigger">
+        <input value="1" name="sub-circle" type="radio" id="sub4" class="hidden-sub-trigger"  onclick="goToPage('india')">
         <label for="sub4">
-            <img src="{{ asset('img/flags/malaysia.png') }}" alt="Malaysia Flag">
+            <img src="{{ asset('img/flags/india.png') }}" alt="India Flag">
         </label>
     </button>
     <button class="sub-cc">
-        <input value="1" name="sub-circle" type="radio" id="sub5" class="hidden-sub-trigger">
+        <input value="1" name="sub-circle" type="radio" id="sub5" class="hidden-sub-trigger"  onclick="goToPage('nepal')">
         <label for="sub5">
-            <img src="{{ asset('img/flags/singapore.png') }}" alt="Singapore Flag">
+            <img src="{{ asset('img/flags/nepal.png') }}" alt="Nepal Flag">
         </label>
     </button>
     <button class="sub-cc">
-        <input value="1" name="sub-circle" type="radio" id="sub6" class="hidden-sub-trigger">
+        <input value="1" name="sub-circle" type="radio" id="sub6" class="hidden-sub-trigger"  onclick="goToPage('japan')">
         <label for="sub6">
             <img src="{{ asset('img/flags/philippines.png') }}" alt="Philippines Flag">
         </label>
     </button>
     <button class="sub-cc">
-        <input value="1" name="sub-circle" type="radio" id="sub7" class="hidden-sub-trigger">
+        <input value="1" name="sub-circle" type="radio" id="sub7" class="hidden-sub-trigger"  onclick="goToPage('japan')">
         <label for="sub7">
             <img src="{{ asset('img/flags/cambodia.png') }}" alt="Cambodia Flag">
         </label>
     </button>
     <button class="sub-cc">
-        <input value="1" name="sub-circle" type="radio" id="sub8" class="hidden-sub-trigger">
+        <input value="1" name="sub-circle" type="radio" id="sub8" class="hidden-sub-trigger"  onclick="goToPage('japan')">
         <label for="sub8">
             <img src="{{ asset('img/flags/myanmar.png') }}" alt="Myanmar Flag">
         </label>
@@ -77,7 +77,7 @@
     <img src="{{ asset('img/japan.jpg') }}" alt="Japan">
             </div>
             <div class="info" style="top: 20%; left: 20%; animation-delay: 0.5s;">
-                <h2 style="color: #FF0000;">Japan</h2>
+                <h2 style="color: #FF0000;">CWBジャパン</h2>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit labore ipsum, maxime libero architecto dolorem ear</p>
             </div>
 
@@ -85,7 +85,7 @@
             <div class="circle" style="top: 15%; left: 50%; animation-delay: 0.7s;" onclick="goToPage('indonesia')">
                 <img src="{{ asset('img/indonesia.jpg') }}" alt="Indonesia"></div>
             <div class="info" style="top: 15%; left: 35%;">
-                <h2 style="color: #6B5B95;">Indonesia</h2>
+                <h2 style="color: #6B5B95;">CWBインドネシア</h2>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit labore ipsum, maxime libero architecto dolorem ear</p>
             </div>
 
@@ -94,7 +94,7 @@
             <img src="{{ asset('img/cambodia.jpg') }}" alt="Cambodia">
             </div>
             <div class="info" style="top: 40%; left: 40%;">
-                <h2 style="color: #88B04B;">Cambodia</h2>
+                <h2 style="color: #88B04B;">CWBカンボジア</h2>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit labore ipsum, maxime libero architecto dolorem ear</p>
             </div>
 
@@ -112,7 +112,7 @@
             <img src="{{ asset('img/philippines.jpg') }}" alt="Philippines">
             </div>
             <div class="info" style="top: 10%; left: 65%;">
-                <h2 style="color: #92A8D1;">Philippines</h2>
+                <h2 style="color: #92A8D1;">CWBフィリピン</h2>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit labore ipsum, maxime libero architecto dolorem ear</p>
             </div>
 
@@ -121,7 +121,7 @@
                 <img src="{{ asset('img/nepal.jpg') }}" alt="Nepal">
             </div>
             <div class="info" style="top: 65%; left: 55%;">
-                <h2 style="color: #955251;">Nepal</h2>
+                <h2 style="color: #955251;">CWBネパール</h2>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit labore ipsum, maxime libero architecto dolorem ear</p>
             </div>
 
@@ -130,7 +130,7 @@
             <img src="{{ asset('img/india.jpg') }}" alt="India">
             </div>
             <div class="info" style="top: 40%; left: 65%;">
-                <h2 style="color: #FFA500;">India</h2>
+                <h2 style="color: #FFA500;">CWBインド</h2>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit labore ipsum, maxime libero architecto dolorem ear</p>
             </div>
 
@@ -139,7 +139,7 @@
                 <img src="{{ asset('img/myanmar.jpg') }}" alt="Myanmar">
             </div>
             <div class="info" style="top: 70%; left: 50%; ">
-                <h2 style="color: #FFD700">Myanmar</h2>
+                <h2 style="color: #FFD700">CWBミャンマー</h2>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit labore ipsum, maxime libero architecto dolorem ear</p>
             </div>
         </div>

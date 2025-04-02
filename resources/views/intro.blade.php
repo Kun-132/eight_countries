@@ -98,6 +98,7 @@
             opacity: 0;
             transform: translateX(-50px);
             transition: opacity 1s ease-in-out 0.3s, transform 1s ease-in-out 0.3s;
+            margin-top: 20px;        
         }
 
         .section.active .title {

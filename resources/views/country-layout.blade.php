@@ -17,6 +17,14 @@
 
         }
         
+
+        .cover-image img {
+            height: 100px;
+            position: absolute;
+            top: 20px;
+            left: 15px;
+        }
+        
 /* Gradient Overlay */
 .cover-image::before {
     content: '';
@@ -41,7 +49,7 @@
 /* Style the back button */
 .back-button {
     position: absolute; /* Position the button absolutely within the cover-image */
-    top: 20%; /* Distance from the top */
+    top: 40%; /* Distance from the top */
     left: 5%; /* Distance from the left */
     display: flex;
     align-items: center;
@@ -186,7 +194,11 @@
 </head>
 <body>
     <!-- Cover Image -->
+   
+
     <div class="cover-image">
+    <img src="{{ asset('img/logo.png') }}" alt="CWB Logo">
+
     <a href="{{ url('/home') }}" class="back-button">
         <i class="fas fa-arrow-left"></i> <!-- Font Awesome arrow icon -->
     </a>
