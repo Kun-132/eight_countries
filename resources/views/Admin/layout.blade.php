@@ -99,11 +99,13 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <h4 class="text-center">Admin Panel</h4>
-        <a href="{{ route('admin.home') }}">Dashboard</a>
-        <a href="{{ route('admin.country_content.index') }}">Content Posting</a>
-        <a href="#" onclick="openLogoutModal()">Logout</a>
-        </div>
+    <h4 class="text-center">Admin Panel</h4>
+    <a href="{{ route('admin.home') }}">Dashboard</a>
+    <a href="{{ route('admin.country_content.index') }}">Content Posting</a>
+    <a href="{{ route('admin.home_video.index') }}">Home Video</a>
+    <a href="#" onclick="openLogoutModal()">Logout</a>
+</div>
+
 
     <!-- Logout Confirmation Modal -->
 <div id="logoutModal" class="modal-overlay">

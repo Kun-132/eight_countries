@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> <!-- Link to your CSS file -->
     <style>
         body {
-            overflow: hidden;
             font-family: 'Arial', sans-serif;
             background: black;
             margin: 0;

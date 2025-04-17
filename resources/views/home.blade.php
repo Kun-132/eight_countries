@@ -146,8 +146,31 @@
         <div class="title-container">
             <h1>CWB</h1>
             <p>CWBはコミュニテイーワークを広げていくアジア８か国のネットワークです。情報の交換だけでなく、現場（フィールド）での実践を重視し、違いを超えて（BEYOND）共生社会を目指します。そこから互いに学べますが問題も発生します。その課題解決の一つ一つが社会の変革になります。自分の常識を超え、組織の限界を超え、宗教も国境も超えて挑戦を続けることがCWBの使命です。</p>
-        </div>
+        </div>  
+
     </div>
+    
+    @php
+    $homeVideo = \App\Models\HomeVideo::first();
+@endphp
+
+@if($homeVideo)
+<div style="text-align: center; margin-top: 40px;">
+
+    <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; max-width: 90%; margin: 0 auto;">
+        <iframe 
+            src="{{ $homeVideo->video_url }}"
+            style="position: absolute; top: 40%; left: 50%; width: 70%; height: 70%; transform: translate(-50%, -50%); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
+        <h3 style="font-size: 20px; color:white">{{ $homeVideo->video_title }}</h3>
+
+    </div>
+
+</div>
+@endif
+
 
     <script>
     function goToPage(country) {

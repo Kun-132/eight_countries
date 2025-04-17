@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\CountryContentController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\HomeVideoController;
+
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', [AdminUserController::class, 'showLoginForm'])->name('login');
@@ -22,8 +24,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('/country-content/{id}', [CountryContentController::class, 'update'])->name('country_content.update'); // Update content
         Route::delete('/country-content/{id}', [CountryContentController::class, 'destroy'])->name('country_content.destroy'); // Delete content
         Route::resource('country_content', CountryContentController::class)->names('country_content');
+        
+        Route::get('/home-video', [HomeVideoController::class, 'index'])->name('home_video.index');
+        Route::get('/home-video/create', [HomeVideoController::class, 'create'])->name('home_video.create');
+        Route::post('/home-video', [HomeVideoController::class, 'store'])->name('home_video.store');
+        Route::get('/home-video/{id}/edit', [HomeVideoController::class, 'edit'])->name('home_video.edit');
+        Route::put('/home-video/{id}', [HomeVideoController::class, 'update'])->name('home_video.update');
+        Route::delete('/home-video/{id}', [HomeVideoController::class, 'destroy'])->name('home_video.destroy');
     });
+
 });
+
 
 // Intro page route
 Route::get('/', function () {
