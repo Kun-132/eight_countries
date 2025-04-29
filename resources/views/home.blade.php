@@ -73,20 +73,20 @@
 
         <div class="floating-container">
             <!-- Japan -->
-            <div class="circle" style="top: 20%; left: 15%;" onclick="goToPage('japan')">
+            <div class="circle" style="top: 20%; left: 8%;" onclick="goToPage('japan')">
     <img src="{{ asset('img/japan.jpg') }}" alt="Japan">
             </div>
-            <div class="info" style="top: 20%; left: 20%; animation-delay: 0.5s;">
+            <div class="info" style="top: 20%; left: 13%; animation-delay: 0.5s;">
                 <h2 style="color: #FF0000;">CWBジャパン</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit labore ipsum, maxime libero architecto dolorem ear</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam ut autem beatae aperiam sapiente aut dolorem assumenda, cumque dolore velit nihil, fugiat voluptatem </p>
             </div>
 
             <!-- Indonesia -->
             <div class="circle" style="top: 15%; left: 50%; animation-delay: 0.7s;" onclick="goToPage('indonesia')">
                 <img src="{{ asset('img/indonesia.jpg') }}" alt="Indonesia"></div>
-            <div class="info" style="top: 15%; left: 35%;">
+            <div class="info" style="top: 15%; left: 29%;">
                 <h2 style="color: #6B5B95;">CWBインドネシア</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit labore ipsum, maxime libero architecto dolorem ear</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam ut autem beatae aperiam sapiente aut dolorem assumenda, cumque dolore velit nihil, fugiat voluptatem </p>
             </div>
 
             <!-- Cambodia -->
@@ -95,7 +95,7 @@
             </div>
             <div class="info" style="top: 40%; left: 40%;">
                 <h2 style="color: #88B04B;">CWBカンボジア</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit labore ipsum, maxime libero architecto dolorem ear</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam ut autem beatae aperiam sapiente aut dolorem assumenda, cumque dolore velit nihil, fugiat voluptatem </p>
             </div>
 
             <!-- Malaysia -->
@@ -111,18 +111,18 @@
             <div class="circle" style="top: 10%; left: 80%; animation-delay: 1.1s;" onclick="goToPage('philippines')">
             <img src="{{ asset('img/philippines.jpg') }}" alt="Philippines">
             </div>
-            <div class="info" style="top: 10%; left: 65%;">
+            <div class="info" style="top: 10%; left: 60%;">
                 <h2 style="color: #92A8D1;">CWBフィリピン</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit labore ipsum, maxime libero architecto dolorem ear</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam ut autem beatae aperiam sapiente aut dolorem assumenda, cumque dolore velit nihil, fugiat voluptatem </p>
             </div>
 
             <!-- Nepal -->
-            <div class="circle" style="top: 65%; left: 70%; animation-delay: 1.3s" onclick="goToPage('nepal')">
+            <div class="circle" style="top: 65%; left: 80%; animation-delay: 1.3s" onclick="goToPage('nepal')">
                 <img src="{{ asset('img/nepal.jpg') }}" alt="Nepal">
             </div>
-            <div class="info" style="top: 65%; left: 55%;">
+            <div class="info" style="top: 65%; left: 58%;">
                 <h2 style="color: #955251;">CWBネパール</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit labore ipsum, maxime libero architecto dolorem ear</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam ut autem beatae aperiam sapiente aut dolorem assumenda, cumque dolore velit nihil, fugiat voluptatem </p>
             </div>
 
             <!-- India -->
@@ -131,7 +131,7 @@
             </div>
             <div class="info" style="top: 40%; left: 65%;">
                 <h2 style="color: #FFA500;">CWBインド</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit labore ipsum, maxime libero architecto dolorem ear</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam ut autem beatae aperiam sapiente aut dolorem assumenda, cumque dolore velit nihil, fugiat voluptatem </p>
             </div>
 
             <!-- Myanmar -->
@@ -140,7 +140,7 @@
             </div>
             <div class="info" style="top: 70%; left: 50%; ">
                 <h2 style="color: #FFD700">CWBミャンマー</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit labore ipsum, maxime libero architecto dolorem ear</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam ut autem beatae aperiam sapiente aut dolorem assumenda, cumque dolore velit nihil, fugiat voluptatem  </p>
             </div>
         </div>
         <div class="title-container">

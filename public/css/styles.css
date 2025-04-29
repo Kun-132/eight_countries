@@ -59,7 +59,7 @@ transform: scale(1.2); /* Zoom effect on hover */
     padding: 10px 20px;
     font-size: 14px;
     pointer-events: none;
-    width: 200px;
+    width: 300px;
     text-align: left;
 }
 .circle:hover + .info {
