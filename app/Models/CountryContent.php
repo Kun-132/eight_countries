@@ -15,7 +15,9 @@ class CountryContent extends Model
         'title',
         'paragraph',
         'media_type',
-        'media_path'
+        'media_path',
+        'image1',
+        'image2', // ✅ Newly added fields
     ];
 
     public function country()
@@ -23,4 +25,5 @@ class CountryContent extends Model
         return $this->belongsTo(Country::class);
     }
 }
+
 

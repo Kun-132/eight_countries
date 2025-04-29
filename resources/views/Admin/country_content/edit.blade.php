@@ -54,20 +54,37 @@
         @endif
     </div>
 
+    <div class="form-group">
+        <label for="image1">Additional Image 1 (optional)</label>
+        <input type="file" name="image1" class="form-control">
+        @if($content->image1)
+            <p>Current Image 1:</p>
+            <img src="{{ asset('storage/' . $content->image1) }}" width="100">
+        @endif
+    </div>
+
+    <div class="form-group">
+        <label for="image2">Additional Image 2 (optional)</label>
+        <input type="file" name="image2" class="form-control">
+        @if($content->image2)
+            <p>Current Image 2:</p>
+            <img src="{{ asset('storage/' . $content->image2) }}" width="100">
+        @endif
+    </div>
+
     <div class="form-group" id="video_input" style="{{ $content->media_type == 'video' ? 'display: block;' : 'display: none;' }}">
         <label for="media_path">Video URL</label>
         <input type="text" name="media_path" class="form-control" value="{{ $content->media_path }}">
     </div>
 
-    <div class="button-group" syle='margin-top:15px'>
-
-    <button type="submit" class="btn btn-primary">Update Content</button>
-    <a href="{{ route('admin.country_content.index') }}" class="btn btn-secondary">Cancel</a>
+    <div class="button-group" style="margin-top:15px">
+        <button type="submit" class="btn btn-primary">Update Content</button>
+        <a href="{{ route('admin.country_content.index') }}" class="btn btn-secondary">Cancel</a>
     </div>
 </form>
 
 @if ($errors->any())
-    <div class="alert alert-danger">
+    <div class="alert alert-danger mt-3">
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -82,5 +99,4 @@ function toggleMediaInput(value) {
     document.getElementById('video_input').style.display = value === 'video' ? 'block' : 'none';
 }
 </script>
-
 @endsection
