@@ -56,6 +56,16 @@
         <label for="media_path">Video URL</label>
         <input type="text" name="media_path" class="form-control">
     </div>
+    
+    <div class="form-group">
+    <label for="image1">Additional Image 1 (optional)</label>
+    <input type="file" name="image1" class="form-control">
+</div>
+
+<div class="form-group">
+    <label for="image2">Additional Image 2 (optional)</label>
+    <input type="file" name="image2" class="form-control">
+</div>
 
     <div class='button-group' style="margin-top:15px;">
         <button type="submit" class="btn btn-primary">Save Content</button>

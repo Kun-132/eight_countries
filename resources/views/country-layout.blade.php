@@ -190,6 +190,18 @@
             color:  #FFFFFF;
             line-height: 1.6;
         }
+        .additional-images {
+    display: flex;
+    gap: 15px; /* Space between images */
+    margin-top: 15px;
+}
+
+/* Style for individual images */
+.additional-images img {
+    width: 50%; /* Make them take half the width each */
+    max-width: 400px; /* Optional: Set a maximum width */
+    object-fit: cover; /* Optional: Crop images to cover their box */
+}
     </style>
 </head>
 <body>

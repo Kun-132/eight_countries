@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('country_contents', function (Blueprint $table) {
             $table->id();
             $table->foreignId('country_id')->constrained('countries')->onDelete('cascade');
-            $table->integer('section_id'); // Not a foreign key, so it's fine
+            $table->string('section_id'); // Not a foreign key, so it's fine
             $table->string('side_nav_link_name');
             $table->string('title');
             $table->text('paragraph');

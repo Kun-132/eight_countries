@@ -1,14 +1,14 @@
 <!-- resources/views/myanmar.blade.php -->
 @extends('country-layout')
 
-@section('title', 'Nepal')
+@section('title', 'SriLanka')
 
 @section('content')
 <style>
         .cover-image {
     width: 100%;
     height: 800px; /* Adjust height as needed */
-    background: url('{{ asset('img/nepal.jpg') }}') no-repeat center center/cover;
+    background: url('{{ asset('img/srilanka.jpg') }}') no-repeat center center/cover;
     position: relative;
     display: flex;
     align-items: flex-end; /* Align content at the bottom */
