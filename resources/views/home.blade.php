@@ -60,7 +60,7 @@
             <!-- SiriLanka -->
 
             <div class="circle" style="top: 10%; left: 25%; animation-delay: 1.1s;" onclick="goToPage('srilanka')">
-            <img src="{{ asset('img/srilanka.jpg') }}" alt="Sri Lanka">
+            <img src="{{ url('img/sirilanka.jpg') }}" alt="Sri Lanka">
             </div>
             <div class="info" style="top: 10%; left: 30%;">
                 <h2 style="color: #92A8D1;">スリランカ</h2>
