@@ -37,6 +37,8 @@
         <div class="additional-images">
             @if($content->image1)
                 <img src="{{ asset('storage/' . $content->image1) }}" alt="Additional Image 1" class="img-fluid mt-2">
+
+                
             @endif
 
             @if($content->image2)
