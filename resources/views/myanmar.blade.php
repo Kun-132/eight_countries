@@ -36,12 +36,12 @@
     @if($content->image1 || $content->image2)
         <div class="additional-images">
             @if($content->image1)
-            <img src="/uploads/{{ basename($content->image1) }}" class="img-fluid mt-2" alt="{{ $content->title }}">
+            <img src="{{ asset('storage/' . $content->image1) }}" class="img-fluid mt-2" alt="{{ $content->title }}">
             @endif
 
             @if($content->image2)
-            <img src="/storage/content-images/{{ basename($content->image2) }}" class="img-fluid mt-2" alt="{{ $content->title }}">            @endif
-        </div>
+            <img src="{{ asset('storage/' . $content->image2) }}" class="img-fluid mt-2" alt="{{ $content->title }}">
+            </div>
     @endif
 </div>
 @endforeach
