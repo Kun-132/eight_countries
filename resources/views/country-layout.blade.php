@@ -45,6 +45,27 @@
     height: 300px; /* Adjust as needed */
     background-color: #333; /* Dark background for contrast */
 }
+.cover-text {
+    position: absolute;
+    top: 55%; /* Push it up higher */
+    left: 60px; /* Distance from left edge */
+    color: white;
+    z-index: 2;
+    max-width: 50%;
+    text-align: left;
+}
+
+
+.cover-text h1 {
+    font-size: 36px;
+    margin: 0 0 10px;
+}
+
+.cover-text p {
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 0;
+}
 
 /* Style the back button */
 .back-button {
@@ -214,6 +235,11 @@
     <a href="{{ url('/home') }}" class="back-button">
         <i class="fas fa-arrow-left"></i> <!-- Font Awesome arrow icon -->
     </a>
+
+    <div class="cover-text">
+        <h1>@yield('cover-title')</h1>
+        <p>@yield('cover-paragraph')</p>
+    </div>
 </div>
     <!-- Container for Side Nav and Content -->
     <div class="container">

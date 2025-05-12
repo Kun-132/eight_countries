@@ -7,8 +7,8 @@
 <style>
         .cover-image {
     width: 100%;
-    height: 800px; /* Adjust height as needed */
-    background: url('{{ asset('img/india.jpg') }}') no-repeat center center/cover;
+    height: 700px; /* Adjust height as needed */
+    background: url('{{ asset('img/India Main.png') }}') no-repeat center center/cover;
     position: relative;
     display: flex;
     align-items: flex-end; /* Align content at the bottom */
@@ -19,6 +19,13 @@
 }
 
     </style>
+    @section('cover-title')
+    India インド
+@endsection
+
+@section('cover-paragraph')
+インド、特に南インドは南アジアから東南アジアに至る広い文化の源流です。伝統舞踊、建築、彫像などをを通じて、それぞれの人が生まれた文化の原点と、それぞれの文化がどう派生し変化したのか体験することができます。伝統は止まっているものではなく、さまざまなものの中で揺らぎ姿を変えていくものだということを実感できる場所です。その拠点となるのが、私たちと協働しているバンガロールのチャナカ大学、ウジレのSDMカレッジです。
+@endsection
     <!-- Section 1: Image, Title, Paragraph -->
     @foreach($contents as $content)
     <div id="{{ $content->section_id }}" class="content-section">

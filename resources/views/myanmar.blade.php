@@ -8,7 +8,7 @@
     .cover-image {
         width: 100%;
         height: 800px; /* Adjust height as needed */
-        background: url('{{ asset('img/myanmar.jpg') }}') no-repeat center center/cover;
+        background: url('{{ asset('img/Myanmar Main.jpg') }}') no-repeat center center/cover;
         position: relative;
         display: flex;
         align-items: flex-end; /* Align content at the bottom */
@@ -18,7 +18,13 @@
         padding-bottom: 40px; /* Space for text or content */
     }
 </style>
+@section('cover-title')
+Myanmar ミャンマー
+@endsection
 
+@section('cover-paragraph')
+ミャンマーは、壮大なバガンの仏塔群に象徴される仏教文化と、多様な民族が織りなす豊かな伝統を持つ国です。近年は政治的混乱により社会は揺れ動いていますが、自分たちの道をなんとか切り開こうとする若者たちが活動しています。ヤンゴンメンバーは各々自分たちの得意なスキルを活かしながら、仕事を通じて自立を目指し活動を続けています。もちろん、停電やインターネットが通じないときもあります。それでも自分たちから新しい学びを求め続けていく姿勢を持っています。 ヤンゴンでは「ものづくり」「コミュニケーション」「日本文化」の三つが主な活動の柱です。
+@endsection
 <!-- Section 1: Image, Title, Paragraph -->
 @foreach($contents as $content)
     <div id="{{ $content->section_id }}" class="content-section">

@@ -7,8 +7,8 @@
 <style>
         .cover-image {
     width: 100%;
-    height: 800px; /* Adjust height as needed */
-    background: url('{{ asset('img/cambodia.jpg') }}') no-repeat center center/cover;
+    height: 700px; /* Adjust height as needed */
+    background: url('{{ asset('img/Cam Main.jpg') }}') no-repeat center center/cover;
     position: relative;
     display: flex;
     align-items: flex-end; /* Align content at the bottom */
@@ -19,6 +19,14 @@
 }
 
     </style>
+
+@section('cover-title')
+Cambodia カンボジア
+@endsection
+
+@section('cover-paragraph')
+カンボジアは千年の歴史を持つクメール文明の地で、世界遺産アンコール遺跡群に代表される豊かな文化遺産を受け継いでいます。私たちは「文化活動」「コミュニティ・ビジット」「仕事づくり」の３つの軸で活動を行っています。他の国やチームと、マッシュアップを通して新たな商品や価値を生み出します。また、動画での発信を行っています。
+@endsection
    <!-- Section 1: Image, Title, Paragraph -->
    @foreach($contents as $content)
     <div id="{{ $content->section_id }}" class="content-section">
