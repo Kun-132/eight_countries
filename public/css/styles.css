@@ -55,9 +55,11 @@
   pointer-events: none;
   width: 300px;
   text-align: left;
-  opacity: 1; /* Always visible */
+  opacity: 0; /* Start invisible */
   transform: translateY(0); /* No initial offset */
+  animation: fadeIn 1.5s ease-out forwards; /* Add animation */
 }
+
 .always-visible {
   opacity: 1 !important;
   transform: translateY(0) !important;

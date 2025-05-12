@@ -17,39 +17,39 @@
         <div class="circle" style="top: 20%; left: 8%;" onclick="goToPage('japan')">
             <img src="{{ asset('img/japan.jpg') }}" alt="Japan">
         </div>
-        <div class="info always-visible" style="top: 31%; left: 6%; animation-delay: 0.5s;">
-            <h2 style="color: #FF0000;">CWBジャパン</h2>
+        <div class="info" style="top: 31%; left: 7%;animation-delay: 0.5s; animation-name: fadeIn;">
+            <h2 style="color: #FF0000;">ジャパン</h2>
         </div>
 
         <!-- Indonesia -->
         <div class="circle" style="top: 15%; left: 50%; animation-delay: 0.7s;" onclick="goToPage('indonesia')">
             <img src="{{ asset('img/indonesia.jpg') }}" alt="Indonesia">
         </div>
-        <div class="info always-visible" style="top: 26%; left: 47%;">
-            <h2 style="color: #6B5B95;">CWBインドネシア</h2>
+        <div class="info" style="top: 26%; left: 48%;animation-delay: 0.7s; animation-name: fadeIn;">
+            <h2 style="color: #6B5B95;">インドネシア</h2>
         </div>
 
         <!-- Cambodia -->
         <div class="circle" style="top: 40%; left: 35%; animation-delay: 0.9s;" onclick="goToPage('cambodia')">
             <img src="{{ asset('img/cambodia.jpg') }}" alt="Cambodia">
         </div>
-        <div class="info always-visible" style="top: 51%; left: 32%;">
-            <h2 style="color: #88B04B;">CWBカンボジア</h2>
+        <div class="info" style="top: 51%; left: 33%;animation-delay: 0.9s; animation-name: fadeIn;">
+            <h2 style="color: #88B04B;">カンボジア</h2>
         </div>
 
         <!-- Phillipine -->
         <div class="circle" style="top: 10%; left: 80%; animation-delay: 1.1s;" onclick="goToPage('philippines')">
             <img src="{{ asset('img/philippines.jpg') }}" alt="Philippines">
         </div>
-        <div class="info always-visible" style="top: 21%; left: 77%;">
-            <h2 style="color: #92A8D1;">CWBフィリピン</h2>
+        <div class="info" style="top: 21%; left: 78%;animation-delay: 1.1s; animation-name: fadeIn;">
+            <h2 style="color: #92A8D1;">フィリピン</h2>
         </div>
         
         <!-- SiriLanka -->
         <div class="circle" style="top: 10%; left: 25%; animation-delay: 1.1s;" onclick="goToPage('srilanka')">
             <img src="{{ asset('img/srilanka.jpg') }}" alt="Sri Lanka">
         </div>
-        <div class="info always-visible" style="top: 21%; left: 23%;">
+        <div class="info" style="top: 21%; left: 23%;animation-delay: 1.1s; animation-name: fadeIn;">
             <h2 style="color: #92A8D1;">スリランカ</h2>
         </div>
 
@@ -57,24 +57,24 @@
         <div class="circle" style="top: 65%; left: 80%; animation-delay: 1.3s" onclick="goToPage('nepal')">
             <img src="{{ asset('img/nepal.jpg') }}" alt="Nepal">
         </div>
-        <div class="info always-visible" style="top: 76%; left: 77%;">
-            <h2 style="color: #955251;">CWBネパール</h2>
+        <div class="info" style="top: 76%; left: 79%;animation-delay: 1.3s; animation-name: fadeIn;">
+            <h2 style="color: #955251;">ネパール</h2>
         </div>
 
         <!-- India -->
         <div class="circle" style="top: 40%; left: 60%; animation-delay: 1.5s" onclick="goToPage('india')">
             <img src="{{ asset('img/india.jpg') }}" alt="India">
         </div>
-        <div class="info always-visible" style="top: 51%; left: 58%;">
-            <h2 style="color: #FFA500;">CWBインド</h2>
+        <div class="info" style="top: 51%; left: 59%;animation-delay: 1.5s; animation-name: fadeIn;">
+            <h2 style="color: #FFA500;">インド</h2>
         </div>
 
         <!-- Myanmar -->
         <div class="circle" style="top: 70%; left: 45%;animation-delay: 1.7s" onclick="goToPage('myanmar')">
             <img src="{{ asset('img/myanmar.jpg') }}" alt="Myanmar">
         </div>
-        <div class="info always-visible" style="top: 81%; left: 43%; ">
-            <h2 style="color: #FFD700">CWBミャンマー</h2>
+        <div class="info" style="top: 81%; left: 43%;animation-delay: 1.7s; animation-name: fadeIn; ">
+            <h2 style="color: #FFD700">ミャンマー</h2>
         </div>
     </div>
     <div class="title-container">
