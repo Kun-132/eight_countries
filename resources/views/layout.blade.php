@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'CWB')</title>
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> <!-- Link to your CSS file -->
+    
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> <!-- Global CSS file -->
+
+    <!-- Page-specific styles -->
+    @yield('styles') <!-- This allows child views to inject their own CSS -->
+
     <style>
         body {
             font-family: 'Arial', sans-serif;

@@ -4,11 +4,134 @@
 
 @section('content') <!-- Inject content into the layout -->
 
-<!-- Nav Bar -->
+@section('styles')
+<style>
+    .background {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  filter: brightness(0.8);
+}
+.floating-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.circle {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden; /* Ensures the image stays within the circle */
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  animation: float 6s infinite ease-in-out, fadeIn 1.5s ease-out forwards;
+  opacity: 0; /* Start invisible */
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  cursor: pointer;
+}
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+.circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the circle without distortion */
+  transition: transform 0.3s;
+}
 
+.circle:hover img {
+  transform: scale(1.2); /* Zoom effect on hover */
+}
+.circle:hover {
+  transform: scale(1.3);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.2);
+}
+.info {
+  position: absolute;
+  color: white;
+  padding: 10px 20px;
+  font-size: 14px;
+  pointer-events: none;
+  width: 300px;
+  text-align: left;
+  opacity: 0; /* Start invisible */
+  transform: translateY(0); /* No initial offset */
+  animation: fadeIn 1.5s ease-out forwards; /* Add animation */
+}
 
+.always-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+.info h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+.info p {
+  margin: 5px 0 0;
+  font-size: 14px;
+}
+.title-container {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  color: white;
+  opacity: 0; /* Start invisible */
+  animation: slideUp 1.5s ease-out 0.5s forwards; /* Animation */
+  width: 30%;
+}
 
-<!-- Nav Bar ends here -->
+.title-container h1 {
+  margin: 0;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.title-container p {
+  margin: 10px 0 0;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Animation Keyframes */
+@keyframes slideUp {
+  from {
+      opacity: 0;
+      transform: translateY(50px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+footer .demo {
+  position: absolute;
+  bottom: 10px;
+  width: 500px;
+  margin: 0 auto;
+}
+
+footer .demo a {
+  text-align: center;
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 100;
+  border-bottom: 1px solid var(--black);
+}
+</style>
+@endsection
+
 
 <!-- Home page starts here -->
 <div class="background">
