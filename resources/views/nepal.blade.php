@@ -19,6 +19,19 @@
 }
 
     </style>
+    @section('cover-title')
+    Nepal ネパール
+    @endsection
+
+@section('cover-paragraph')
+ネパールは２０１５年の大地震の復興で訪ねてからの関係です。ネパールは寒いことから
+編み物が盛んで、その支援のための組織化で活躍してくれたのがスジャンナとアリヤです
+（今年３月に結婚）。アリヤは去年１２月の「武器のない平和を！」に通訳兼役者として
+参加、英語・ヒンズー語・ネパール語のバイリンガルで大活躍。実は３か国語を話せるの
+は当たり前で、更に日本語も話せるプレビアさんも、これから加わります。上智大学の英
+文を卒業し、日本の家電販販店で働いています。稀少言語・日本語を話す人材は貴重です
+(VTRメッセージをご案下さい)
+@endsection
     <!-- Section 1: Image, Title, Paragraph -->
     @foreach($contents as $content)
     <div id="{{ $content->section_id }}" class="content-section">

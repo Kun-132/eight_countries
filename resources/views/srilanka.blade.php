@@ -8,7 +8,7 @@
         .cover-image {
     width: 100%;
     height: 800px; /* Adjust height as needed */
-    background: url('{{ asset('img/srilanka.jpg') }}') no-repeat center center/cover;
+    background: url('{{ asset('img/Sri Main.png') }}') no-repeat center center/cover;
     position: relative;
     display: flex;
     align-items: flex-end; /* Align content at the bottom */
@@ -19,6 +19,13 @@
 }
 
     </style>
+
+@section('cover-title')
+Sri Lanka スリランカ
+@endsection
+
+@section('cover-paragraph')
+スリランカはインド洋に浮かぶ島国で、豊かな自然とスパイス文化を誇ります。現在PAの主力商品であるカレーの壺はスリランカから生まれました。スパイスの国ですが、当時は日本のカレールウみたいなものはなく、スパイスを買って各家庭で調合するところから作っていたため時間がかかっていました。日本で働いた経験を持つマリオさんはペーストを作り販売することで主婦の時間を解放し、また、スリランカの農家に品質管理の面で付加価値をつけて自立の手助けをするなど、地域を向上させる活動を行っています。@endsection
     <!-- Section 1: Image, Title, Paragraph -->
     @foreach($contents as $content)
     <div id="{{ $content->section_id }}" class="content-section">

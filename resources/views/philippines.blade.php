@@ -8,7 +8,7 @@
         .cover-image {
     width: 100%;
     height: 800px; /* Adjust height as needed */
-    background: url('{{ asset('img/philippines.jpg') }}') no-repeat center center/cover;
+    background: url('{{ asset('img/Phip Main.jpg') }}') no-repeat center center/cover;
     position: relative;
     display: flex;
     align-items: flex-end; /* Align content at the bottom */
@@ -19,6 +19,12 @@
 }
 
     </style>
+    @section('cover-title')
+    Philippines フィリピン
+    @endsection
+
+@section('cover-paragraph')
+フィリピンは数多くの島からなる国です。CWBの拠点があるのは南に位置するミンダナオ島。海に面し山を後ろに控える杷にあります。ここにはPA・第三世界ショップと長年の付き合いがあるSHAPII: SALAY HANDMADE PRODUCTSがあります。PAの創業者である片岡が、農民を苦しめるコゴン草を有効活用しようとしていたロレッタさんと出会い、彼女を日本に招き、日本の和紙づくりの技術を紹介したのが長い付き合いの始まりです。@endsection
     <!-- Section 1: Image, Title, Paragraph -->
     @foreach($contents as $content)
     <div id="{{ $content->section_id }}" class="content-section">
