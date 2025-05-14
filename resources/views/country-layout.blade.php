@@ -206,7 +206,7 @@
     <div class="cover-image">
     <img src="{{ asset('img/logo.png') }}" alt="CWB Logo">
 
-    <a href="{{ url('/home') }}" class="back-button">
+    <a href="{{ url('/') }}" class="back-button">
         <i class="fas fa-arrow-left"></i> <!-- Font Awesome arrow icon -->
     </a>
 

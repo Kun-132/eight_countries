@@ -36,15 +36,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 
-// Intro page route
-Route::get('/', function () {
-    return view('intro');
-})->name('intro');
-
 // Home page route
-Route::get('/home', function () {
+
+Route::get('/', function () {
     return view('home');
 })->name('home');
+
+
 
 // Dynamic country view routes
 Route::get('/{countrySlug}', function ($countrySlug) {
