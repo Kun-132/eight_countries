@@ -26,17 +26,19 @@ Myanmar ミャンマー
 ミャンマーは、壮大なバガンの仏塔群に象徴される仏教文化と、多様な民族が織りなす豊かな伝統を持つ国です。近年は政治的混乱により社会は揺れ動いていますが、自分たちの道をなんとか切り開こうとする若者たちが活動しています。ヤンゴンメンバーは各々自分たちの得意なスキルを活かしながら、仕事を通じて自立を目指し活動を続けています。もちろん、停電やインターネットが通じないときもあります。それでも自分たちから新しい学びを求め続けていく姿勢を持っています。 ヤンゴンでは「ものづくり」「コミュニケーション」「日本文化」の三つが主な活動の柱です。
 @endsection
 <!-- Section 1: Image, Title, Paragraph -->
-@foreach($contents as $content)
+ @foreach($contents as $content)
     <div id="{{ $content->section_id }}" class="content-section">
+    <h2>{{ $content->title }}</h2>
+    <p>{{ $content->paragraph }}</p> <br>
+
+
         @if($content->media_type === 'image')
             <img src="{{ asset('storage/' . $content->media_path) }}" alt="{{ $content->title }}">
         @else
             <iframe src="{{ $content->media_path }}" allowfullscreen></iframe>
         @endif
 
-        <h2>{{ $content->title }}</h2>
-        <p>{{ $content->paragraph }}</p>
-
+        <br>
         {{-- ✅ Show image1 and image2 only if they exist --}}
         @if($content->image1 || $content->image2)
             <div class="additional-images">

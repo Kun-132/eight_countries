@@ -25,18 +25,19 @@
 
 @section('cover-paragraph')
 フィリピンは数多くの島からなる国です。CWBの拠点があるのは南に位置するミンダナオ島。海に面し山を後ろに控える杷にあります。ここにはPA・第三世界ショップと長年の付き合いがあるSHAPII: SALAY HANDMADE PRODUCTSがあります。PAの創業者である片岡が、農民を苦しめるコゴン草を有効活用しようとしていたロレッタさんと出会い、彼女を日本に招き、日本の和紙づくりの技術を紹介したのが長い付き合いの始まりです。@endsection
-    <!-- Section 1: Image, Title, Paragraph -->
     @foreach($contents as $content)
     <div id="{{ $content->section_id }}" class="content-section">
+    <h2>{{ $content->title }}</h2>
+    <p>{{ $content->paragraph }}</p> <br>
+
+
         @if($content->media_type === 'image')
             <img src="{{ asset('storage/' . $content->media_path) }}" alt="{{ $content->title }}">
         @else
             <iframe src="{{ $content->media_path }}" allowfullscreen></iframe>
         @endif
 
-        <h2>{{ $content->title }}</h2>
-        <p>{{ $content->paragraph }}</p>
-
+        <br>
         {{-- ✅ Show image1 and image2 only if they exist --}}
         @if($content->image1 || $content->image2)
             <div class="additional-images">

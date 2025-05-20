@@ -29,10 +29,11 @@ Indonesia インドネシア
 インドネシアのバリ島のアディさんと共に活動をしています。子供に週2回日本語も教えています。
 @endsection
     <!-- Section 1: Image, Title, Paragraph -->
-    @foreach($contents as $content)
+ @foreach($contents as $content)
     <div id="{{ $content->section_id }}" class="content-section">
-
     <h2>{{ $content->title }}</h2>
+    <p>{{ $content->paragraph }}</p> <br>
+
 
         @if($content->media_type === 'image')
             <img src="{{ asset('storage/' . $content->media_path) }}" alt="{{ $content->title }}">
@@ -40,9 +41,7 @@ Indonesia インドネシア
             <iframe src="{{ $content->media_path }}" allowfullscreen></iframe>
         @endif
 
-        <h2>{{ $content->title }}</h2>
-        <p>{{ $content->paragraph }}</p>
-
+        <br>
         {{-- ✅ Show image1 and image2 only if they exist --}}
         @if($content->image1 || $content->image2)
             <div class="additional-images">
@@ -57,5 +56,4 @@ Indonesia インドネシア
         @endif
     </div>
 @endforeach
-
 @endsection

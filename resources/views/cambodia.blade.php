@@ -28,17 +28,19 @@ Cambodia カンボジア
 カンボジアは千年の歴史を持つクメール文明の地で、世界遺産アンコール遺跡群に代表される豊かな文化遺産を受け継いでいます。私たちは「文化活動」「コミュニティ・ビジット」「仕事づくり」の３つの軸で活動を行っています。他の国やチームと、マッシュアップを通して新たな商品や価値を生み出します。また、動画での発信を行っています。
 @endsection
    <!-- Section 1: Image, Title, Paragraph -->
-   @foreach($contents as $content)
+    @foreach($contents as $content)
     <div id="{{ $content->section_id }}" class="content-section">
+    <h2>{{ $content->title }}</h2>
+    <p>{{ $content->paragraph }}</p> <br>
+
+
         @if($content->media_type === 'image')
             <img src="{{ asset('storage/' . $content->media_path) }}" alt="{{ $content->title }}">
         @else
             <iframe src="{{ $content->media_path }}" allowfullscreen></iframe>
         @endif
 
-        <h2>{{ $content->title }}</h2>
-        <p>{{ $content->paragraph }}</p>
-
+        <br>
         {{-- ✅ Show image1 and image2 only if they exist --}}
         @if($content->image1 || $content->image2)
             <div class="additional-images">
@@ -53,6 +55,4 @@ Cambodia カンボジア
         @endif
     </div>
 @endforeach
-
-
 @endsection

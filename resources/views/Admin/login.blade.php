@@ -27,7 +27,7 @@
             </div>
             <button type="submit" class="btn btn-primary w-100">Login</button>
             <div class="text-center mt-3">
-            <a href="{{ route('/') }}" class="text-decoration-none">← Go Back to Home Page</a>
+                <a href="{{ url('/') }}" class="text-decoration-none">← Go Back to Home Page</a>
         </div>
         </form>
     </div>
