@@ -35,6 +35,8 @@ PA（プレスオルタナテイブ・株）が日本で最初にフェアート
     @foreach($contents as $content)
     <div id="{{ $content->section_id }}" class="content-section">
     <h2>{{ $content->title }}</h2>
+    <p>{{ $content->paragraph }}</p> <br>
+
 
         @if($content->media_type === 'image')
             <img src="{{ asset('storage/' . $content->media_path) }}" alt="{{ $content->title }}">
@@ -42,8 +44,7 @@ PA（プレスオルタナテイブ・株）が日本で最初にフェアート
             <iframe src="{{ $content->media_path }}" allowfullscreen></iframe>
         @endif
 
-        <p>{{ $content->paragraph }}</p>
-
+        <br>
         {{-- ✅ Show image1 and image2 only if they exist --}}
         @if($content->image1 || $content->image2)
             <div class="additional-images">
