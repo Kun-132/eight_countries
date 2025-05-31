@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,17 +14,16 @@ class CountryContent extends Model
         'section_id',
         'side_nav_link_name',
         'title',
-        'paragraph',
-        'media_type',
-        'media_path',
-        'image1',
-        'image2', // ✅ Newly added fields
     ];
 
     public function country()
     {
         return $this->belongsTo(Country::class);
     }
+
+    // 🔗 Relationship with flexible content blocks
+    public function blocks()
+    {
+        return $this->hasMany(CountryContentBlock::class);
+    }
 }
-
-

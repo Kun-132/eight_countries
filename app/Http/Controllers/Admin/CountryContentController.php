@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\CountryContent;
 use App\Models\Country;
 use Illuminate\Support\Facades\Storage;
+use App\Models\CountryContentBlock;
+
 
 class CountryContentController extends Controller
 {
@@ -49,89 +51,182 @@ public function destroy($id)
 public function update(Request $request, $id)
 {
     $request->validate([
-        'country_id' => 'required',
-        'section_id' => 'required',
-        'side_nav_link_name' => 'required',
-        'title' => 'required',
-        'paragraph' => 'required',
-        'media_type' => 'required|in:image,video',
-        'image' => 'nullable|image|max:10240',
-        'media_path' => 'nullable|string',
-        'image1' => 'nullable|image|max:10240',
-        'image2' => 'nullable|image|max:10240',
+        'country_id' => 'required|exists:countries,id',
+        'section_id' => 'required|string',
+        'side_nav_link_name' => 'required|string',
+        'title' => 'required|string',
+        'blocks' => 'array',
+        'blocks.*.type' => 'required|string|in:title,paragraph,image,video',
     ]);
 
     $content = CountryContent::findOrFail($id);
+    $content->update([
+        'country_id' => $request->country_id,
+        'section_id' => $request->section_id,
+        'side_nav_link_name' => $request->side_nav_link_name,
+        'title' => $request->title,
+    ]);
 
-    $content->country_id = $request->country_id;
-    $content->section_id = $request->section_id;
-    $content->side_nav_link_name = $request->side_nav_link_name;
-    $content->title = $request->title;
-    $content->paragraph = $request->paragraph;
-    $content->media_type = $request->media_type;
+    $existingBlockIds = [];
 
-    if ($request->media_type === 'image' && $request->hasFile('image')) {
-        $mediaPath = $request->file('image')->store('uploads', 'public');
-        $content->media_path = $mediaPath;
-    } elseif ($request->media_type === 'video') {
-        $content->media_path = $request->media_path;
+    if ($request->has('blocks')) {
+        foreach ($request->blocks as $blockData) {
+            $type = $blockData['type'];
+            $blockId = $blockData['id'] ?? null;
+
+            // Existing block
+            if ($blockId) {
+                $block = CountryContentBlock::find($blockId);
+                if (!$block) continue;
+                $existingBlockIds[] = $block->id;
+
+                $block->type = $type;
+
+                if ($type === 'image') {
+                    // Remove image if requested
+                    if (isset($blockData['remove_image']) && $block->media_path) {
+                        Storage::delete('public/' . $block->media_path);
+                        $block->media_path = null;
+                        $block->content = null;
+                    }
+
+                    // Upload new image if provided
+                    if (isset($blockData['media'])) {
+                        $file = $blockData['media'];
+                        $path = $file->store('uploads', 'public');
+
+                        // Delete old image
+                        if ($block->media_path) {
+                            Storage::delete('public/' . $block->media_path);
+                        }
+
+                        $block->media_path = $path;
+                        $block->content = null;
+                    }
+
+                } else {
+                    // Title, paragraph, or video
+                    $block->content = $blockData['content'] ?? null;
+                    // ⚠️ Do not clear media_path for non-image blocks — only if previously was image
+                    if ($block->media_path && $block->type !== 'image') {
+                        $block->media_path = null;
+                    }
+                }
+
+                $block->save();
+            }
+
+            // New block
+            else {
+                $newBlock = new CountryContentBlock();
+                $newBlock->country_content_id = $content->id;
+                $newBlock->type = $type;
+
+                if ($type === 'image' && isset($blockData['media'])) {
+                    $file = $blockData['media'];
+                    $path = $file->store('uploads', 'public');
+                    $newBlock->media_path = $path;
+                } else {
+                    $newBlock->content = $blockData['content'] ?? null;
+                }
+
+                $newBlock->save();
+                $existingBlockIds[] = $newBlock->id;
+            }
+        }
     }
 
-    if ($request->hasFile('image1')) {
-        $image1Path = $request->file('image1')->store('uploads', 'public');
-        $content->image1 = $image1Path;
-    }
-
-    if ($request->hasFile('image2')) {
-        $image2Path = $request->file('image2')->store('uploads', 'public');
-        $content->image2 = $image2Path;
-    }
-
-    $content->save();
+    // Delete removed blocks
+    $content->blocks()->whereNotIn('id', $existingBlockIds)->each(function ($block) {
+        if ($block->media_path) {
+            Storage::delete('public/' . $block->media_path);
+        }
+        $block->delete();
+    });
 
     return redirect()->route('admin.country_content.index')->with('success', 'Content updated successfully!');
 }
 
 
 
+
+
+
+
 public function store(Request $request)
 {
     $request->validate([
-        'country_id' => 'required|exists:countries,id',
-        'section_id' => 'required|string|max:255',
-        'side_nav_link_name' => 'required|string|max:255',
-        'title' => 'required|string|max:255',
-        'paragraph' => 'required|string',
-        'media_type' => 'required|in:image,video',
-        'image' => 'required_if:media_type,image|image|max:10240',
-        'media_path' => 'required_if:media_type,video|string|nullable',
-        'image1' => 'nullable|image|max:10240',
-        'image2' => 'nullable|image|max:10240',
+        'country_id' => 'required',
+        'section_id' => 'required',
+        'side_nav_link_name' => 'required',
+        'title' => 'required',
     ]);
 
-    $mediaPath = null;
-    if ($request->media_type === 'image' && $request->hasFile('image')) {
-        $mediaPath = $request->file('image')->store('uploads', 'public');
-    } elseif ($request->media_type === 'video') {
-        $mediaPath = $request->media_path;
-    }
-
-    $image1Path = $request->hasFile('image1') ? $request->file('image1')->store('uploads', 'public') : null;
-    $image2Path = $request->hasFile('image2') ? $request->file('image2')->store('uploads', 'public') : null;
-
-    CountryContent::create([
+    $content = CountryContent::create([
         'country_id' => $request->country_id,
         'section_id' => $request->section_id,
         'side_nav_link_name' => $request->side_nav_link_name,
         'title' => $request->title,
-        'paragraph' => $request->paragraph,
-        'media_type' => $request->media_type,
-        'media_path' => $mediaPath,
-        'image1' => $image1Path,
-        'image2' => $image2Path,
     ]);
 
-    return redirect()->route('admin.country_content.index')->with('success', 'Content added successfully!');
+    // Save blocks
+    if ($request->has('blocks')) {
+        foreach ($request->blocks as $index => $block) {
+            $type = $block['type'];
+            $contentValue = null;
+            $mediaPath = null;
+
+            if ($type === 'image' && isset($block['media'])) {
+                $file = $request->file("blocks.$index.media");
+                if ($file) {
+                    $mediaPath = $file->store('uploads', 'public');
+                }
+            } elseif ($type === 'video') {
+                $contentValue = $block['content']; // video URL
+            } else {
+                $contentValue = $block['content'];
+            }
+
+            CountryContentBlock::create([
+                'country_content_id' => $content->id,
+                'type' => $type,
+                'content' => $contentValue,
+                'media_path' => $mediaPath,
+                'order' => $index,
+            ]);
+        }
+    }
+
+    return redirect()->route('admin.country_content.index')->with('success', 'Content created successfully.');
+}
+public function removeBlockImage($id)
+{
+    $block = CountryContentBlock::findOrFail($id);
+
+    if ($block->type !== 'image' || !$block->media_path) {
+        return response()->json(['message' => 'No image found'], 404);
+    }
+
+    Storage::delete('public/' . $block->media_path);
+
+    $block->media_path = null;
+    $block->content = null; // Optional: clear text content as well if any
+    $block->save();
+
+    return response()->json(['message' => 'Image deleted successfully']);
+}
+
+public function deleteBlock($id)
+{
+    $block = CountryContentBlock::findOrFail($id);
+
+    if ($block->type === 'image' && $block->media_path) {
+        Storage::delete('public/' . $block->media_path);
+    }
+
+    $block->delete();
+
+    return response()->json(['message' => 'Block deleted successfully.']);
 }
 
 }

@@ -1,102 +1,201 @@
 @extends('admin.layout')
 
 @section('content')
-<h2>Edit Content</h2>
-<form action="{{ route('admin.country_content.update', $content->id) }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @method('PUT')
+<div class="container my-4">
+    <h2 class="mb-4">Edit Country Content</h2>
 
-    <div class="form-group">
-        <label for="country_id">Country</label>
-        <select name="country_id" class="form-control" required>
-            @foreach($countries as $country)
-                <option value="{{ $country->id }}" {{ $country->id == $content->country_id ? 'selected' : '' }}>
-                    {{ $country->name }}
-                </option>
+    <form action="{{ route('admin.country_content.update', $content->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="country_id" class="form-label">Choose Country</label>
+                <select name="country_id" class="form-select" required>
+                    <option value="">Select Country</option>
+                    @foreach ($countries as $country)
+                        <option value="{{ $country->id }}" {{ $content->country_id == $country->id ? 'selected' : '' }}>
+                            {{ $country->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label for="section_id" class="form-label">Section ID</label>
+                <input type="text" name="section_id" value="{{ $content->section_id }}" class="form-control" required>
+            </div>
+
+            <div class="col-md-3">
+                <label for="side_nav_link_name" class="form-label">Side Nav Link Name</label>
+                <input type="text" name="side_nav_link_name" value="{{ $content->side_nav_link_name }}" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label for="title" class="form-label">General Section Title</label>
+            <input type="text" name="title" value="{{ $content->title }}" class="form-control" required>
+        </div>
+
+        <h4 class="mb-3">Content Blocks</h4>
+        <div id="blocks-container">
+            @foreach ($content->blocks as $index => $block)
+                <div class="card mb-3 block-wrapper" id="block-{{ $block->id }}" data-index="{{ $index }}">
+                    <div class="card-body">
+                        <input type="hidden" name="blocks[{{ $index }}][id]" value="{{ $block->id }}">
+
+                        <div class="row align-items-center mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Content Type</label>
+                                <select name="blocks[{{ $index }}][type]" class="form-select" onchange="handleBlockTypeChange(this, {{ $index }})" required>
+                                    <option value="">Choose Type</option>
+                                    <option value="title" {{ $block->type == 'title' ? 'selected' : '' }}>Title</option>
+                                    <option value="paragraph" {{ $block->type == 'paragraph' ? 'selected' : '' }}>Paragraph</option>
+                                    <option value="image" {{ $block->type == 'image' ? 'selected' : '' }}>Image</option>
+                                    <option value="video" {{ $block->type == 'video' ? 'selected' : '' }}>Video</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6" id="block-input-{{ $index }}">
+                                @if ($block->type === 'title' || $block->type === 'video')
+                                    <input type="text" name="blocks[{{ $index }}][content]" class="form-control" value="{{ $block->content }}" required>
+                                @elseif ($block->type === 'paragraph')
+                                    <textarea name="blocks[{{ $index }}][content]" class="form-control" rows="3" required>{{ $block->content }}</textarea>
+                                @elseif ($block->type === 'image')
+                                    <div>
+                                        @if ($block->media_path)
+                                            <div id="image-block-{{ $block->id }}" class="mb-2">
+                                                <img src="{{ asset('storage/' . $block->media_path) }}" style="max-width: 150px;" class="img-thumbnail mb-2">
+                                                
+                                            </div>
+                                        @endif
+                                        <input type="file" name="blocks[{{ $index }}][media]" class="form-control" accept="image/*">
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="col-md-2 text-end">
+                                <button type="button" class="btn btn-sm btn-danger mt-4" onclick="removeBlock(this)" data-id="{{ $block->id }}">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             @endforeach
-        </select>
-    </div>
+        </div>
 
-    <div class="form-group">
-        <label for="section_id">Section ID</label>
-        <input type="text" name="section_id" class="form-control" value="{{ $content->section_id }}" required>
-    </div>
+        <button type="button" class="btn btn-outline-primary" onclick="addBlock()">+ Add Block</button>
 
-    <div class="form-group">
-        <label for="side_nav_link_name">Side Navigation Link Name</label>
-        <input type="text" name="side_nav_link_name" class="form-control" value="{{ $content->side_nav_link_name }}" required>
-    </div>
+        <div class="mt-4">
+            <button type="submit" class="btn btn-success">Update Content</button>
+        </div>
 
-    <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" name="title" class="form-control" value="{{ $content->title }}" required>
+        <div id="confirm-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.6); z-index:1000;">
+    <div style="background:white; padding:20px; border-radius:8px; width:300px; max-width:90%; margin:150px auto; text-align:center;">
+        <p id="confirm-message">Are you sure you want to delete this block?</p>
+        <button id="confirm-yes" style="margin-right:10px;">Yes</button>
+        <button id="confirm-no">Cancel</button>
     </div>
-
-    <div class="form-group">
-        <label for="paragraph">Paragraph</label>
-        <textarea name="paragraph" class="form-control" required>{{ $content->paragraph }}</textarea>
-    </div>
-
-    <div class="form-group">
-        <label for="media_type">Media Type</label>
-        <select name="media_type" class="form-control" required onchange="toggleMediaInput(this.value)">
-            <option value="image" {{ $content->media_type == 'image' ? 'selected' : '' }}>Image</option>
-            <option value="video" {{ $content->media_type == 'video' ? 'selected' : '' }}>Video</option>
-        </select>
-    </div>
-
-    <div class="form-group" id="image_input" style="{{ $content->media_type == 'image' ? 'display: block;' : 'display: none;' }}">
-        <label for="image">Upload New Image (optional)</label>
-        <input type="file" name="image" class="form-control">
-        @if($content->media_type == 'image' && $content->media_path)
-            <p>Current Image:</p>
-            <img src="{{ asset('storage/' . $content->media_path) }}" width="100">
-        @endif
-    </div>
-
-    <div class="form-group">
-        <label for="image1">Additional Image 1 (optional)</label>
-        <input type="file" name="image1" class="form-control">
-        @if($content->image1)
-            <p>Current Image 1:</p>
-            <img src="{{ asset('storage/' . $content->image1) }}" width="100">
-        @endif
-    </div>
-
-    <div class="form-group">
-        <label for="image2">Additional Image 2 (optional)</label>
-        <input type="file" name="image2" class="form-control">
-        @if($content->image2)
-            <p>Current Image 2:</p>
-            <img src="{{ asset('storage/' . $content->image2) }}" width="100">
-        @endif
-    </div>
-
-    <div class="form-group" id="video_input" style="{{ $content->media_type == 'video' ? 'display: block;' : 'display: none;' }}">
-        <label for="media_path">Video URL</label>
-        <input type="text" name="media_path" class="form-control" value="{{ $content->media_path }}">
-    </div>
-
-    <div class="button-group" style="margin-top:15px">
-        <button type="submit" class="btn btn-primary">Update Content</button>
-        <a href="{{ route('admin.country_content.index') }}" class="btn btn-secondary">Cancel</a>
-    </div>
-</form>
-
-@if ($errors->any())
-    <div class="alert alert-danger mt-3">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
+</div>
+    </form>
 <script>
-function toggleMediaInput(value) {
-    document.getElementById('image_input').style.display = value === 'image' ? 'block' : 'none';
-    document.getElementById('video_input').style.display = value === 'video' ? 'block' : 'none';
+    function removeImage(blockId) {
+    if (confirm('Are you sure you want to delete this image?')) {
+        fetch(`/admin/block/${blockId}/remove-image`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message === 'Image deleted successfully') {
+                document.getElementById(`image-block-${blockId}`).remove();
+            } else {
+                alert(data.message || 'Failed to delete image');
+            }
+        })
+        .catch(error => {
+            console.error('AJAX Error:', error);
+            alert('AJAX request failed');
+        });
+    }
+}
+let blockIndex = {{ $content->blocks->count() }};
+
+function addBlock() {
+    const container = document.getElementById('blocks-container');
+
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('block-wrapper');
+    wrapper.dataset.index = blockIndex;
+
+    wrapper.innerHTML = `
+        <select name="blocks[${blockIndex}][type]" onchange="handleBlockTypeChange(this, ${blockIndex})" required>
+            <option value="">Choose Type</option>
+            <option value="title">Title</option>
+            <option value="paragraph">Paragraph</option>
+            <option value="image">Image</option>
+            <option value="video">Video</option>
+        </select>
+
+        <div class="block-input" id="block-input-${blockIndex}"></div>
+
+        <button type="button" onclick="removeUnsavedBlock(this)">Remove Block</button>
+        <hr>
+    `;
+
+    container.appendChild(wrapper);
+    blockIndex++;
+}
+
+function removeUnsavedBlock(button) {
+    if (confirm('Are you sure you want to remove this unsaved block?')) {
+        button.closest('.block-wrapper').remove();
+    }
+}
+
+function removeBlock(button) {
+    const blockId = button.getAttribute('data-id');
+    if (blockId && confirm('Are you sure you want to delete this block?')) {
+        fetch(`/admin/block/${blockId}/delete`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            button.closest('.block-wrapper').remove();
+            alert(data.message || 'Deleted successfully');
+        })
+        .catch(error => {
+            alert('Error deleting block');
+        });
+    } else if (!blockId) {
+        if (confirm('Are you sure you want to remove this unsaved block?')) {
+            button.closest('.block-wrapper').remove();
+        }
+    }
+}
+
+function handleBlockTypeChange(select, index) {
+    const type = select.value;
+    const inputWrapper = document.getElementById(`block-input-${index}`);
+    let inputHTML = '';
+
+    if (type === 'title' || type === 'video') {
+        inputHTML = `<input type="text" name="blocks[${index}][content]" required>`;
+    } else if (type === 'paragraph') {
+        inputHTML = `<textarea name="blocks[${index}][content]" required></textarea>`;
+    } else if (type === 'image') {
+        inputHTML = `
+            <input type="file" name="blocks[${index}][media]" accept="image/*">
+        `;
+    }
+
+    inputWrapper.innerHTML = inputHTML;
 }
 </script>
 @endsection

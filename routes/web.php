@@ -31,6 +31,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/home-video/{id}/edit', [HomeVideoController::class, 'edit'])->name('home_video.edit');
         Route::put('/home-video/{id}', [HomeVideoController::class, 'update'])->name('home_video.update');
         Route::delete('/home-video/{id}', [HomeVideoController::class, 'destroy'])->name('home_video.destroy');
+        Route::delete('/block/{id}/remove-image', [CountryContentController::class, 'removeBlockImage'])->name('block.remove-image');
+        Route::delete('/block/{id}/delete', [CountryContentController::class, 'deleteBlock']);
+
     });
 
 });

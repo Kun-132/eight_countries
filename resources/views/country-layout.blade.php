@@ -14,9 +14,7 @@
             flex-direction: column;
             align-items: center;
             background-color: black;
-
         }
-        
 
         .cover-image img {
             height: 100px;
@@ -24,8 +22,7 @@
             top: 20px;
             left: 15px;
         }
-        
-/* Gradient Overlay */
+
         .cover-image::before {
             content: '';
             position: absolute;
@@ -33,28 +30,25 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)); /* Gradient overlay */
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
         }
-        /* Basic styling for the back button */
-        /* Ensure the cover-image container is positioned relatively */
-        /* Ensure the cover-image container is positioned relatively */
-        /* Ensure the cover-image container is positioned relatively */
+
         .cover-image {
-            position: relative; /* Required for absolute positioning of the child */
-            width: 100%; /* Adjust as needed */
-            height: 300px; /* Adjust as needed */
-            background-color: #333; /* Dark background for contrast */
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background-color: #333;
         }
+
         .cover-text {
             position: absolute;
-            top: 55%; /* Push it up higher */
-            left: 60px; /* Distance from left edge */
+            top: 55%;
+            left: 60px;
             color: white;
             z-index: 2;
             max-width: 50%;
             text-align: left;
         }
-
 
         .cover-text h1 {
             font-size: 36px;
@@ -67,220 +61,226 @@
             margin: 0;
         }
 
-        /* Style the back button */
         .back-button {
-            position: absolute; /* Position the button absolutely within the cover-image */
-            top: 40%; /* Distance from the top */
-            left: 5%; /* Distance from the left */
+            position: absolute;
+            top: 40%;
+            left: 5%;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px; /* Circle size */
-            height: 40px; /* Circle size */
-            border: 2px solid white; /* White hollow border */
-            border-radius: 50%; /* Make it circular */
-            text-decoration: none; /* Remove underline */
-            color: white; /* White arrow color */
-            font-size: 20px; /* Adjust icon size */
-            transition: all 0.3s ease; /* Smooth transition */
+            width: 40px;
+            height: 40px;
+            border: 2px solid white;
+            border-radius: 50%;
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease;
         }
 
-        /* Hover effect */
         .back-button:hover {
-            background-color: rgba(255, 255, 255, 0.1); /* Light white background on hover */
-            border-color: rgba(255, 255, 255, 0.8); /* Slightly transparent border on hover */
-            color: rgba(255, 255, 255, 0.8); /* Slightly transparent arrow color on hover */
-            transform: scale(1.1); /* Slightly scale up the button */
-        }
-
-        /* Optional: Add a box shadow on hover for a more pronounced effect */
-        .back-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.8);
+            transform: scale(1.1);
             box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
         }
+
         .container {
             display: flex;
             width: 100%;
-            max-width: 1300px; /* Adjust as needed */
+            max-width: 1300px;
             margin-top: 20px;
-
-            
         }
-        /* Side Nav Container */
-.side-nav {
-    width: 30%;
-    position: sticky;
-    top: 40%;
-    align-self: flex-start;
-    background-color:rgb(0, 0, 0); /* Dark background for side nav */
-    padding: 20px;
-    border-radius: 10px;
-}
 
-/* List Reset */
-.side-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+        .side-nav {
+            width: 25%;
+            position: sticky;
+            top: 40%;
+            align-self: flex-start;
+            background-color: black;
+            padding: 20px;
+            border-radius: 10px;
+        }
 
-/* Side Nav List Items */
-.side-nav ul li {
-    margin: 10px 0;
-    position: relative;
-}
+        .side-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
-/* White bullet points with color indicators */
+        .side-nav ul li {
+            margin: 10px 0;
+        }
 
+        .side-nav ul li a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
 
-/* Nav Item Link Styling */
-.side-nav ul li a {
-    display: block;
-    padding: 10px 15px;
-    text-decoration: none;
-    font-size: 18px;
-    color: white;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    opacity: 0.7;
-}
+        .side-nav ul li a:hover {
+            background-color: #333;
+            opacity: 1;
+        }
 
-/* Hover Effect */
-.side-nav ul li a:hover {
-    background-color: #333;
-    opacity: 1;
-}
-
-/* Active Nav Item */
-.side-nav ul li a.active {
-    background-color:rgb(99, 94, 94); /* Example active color */
-    color: white;
-    font-weight: bold;
-    opacity: 1;
-}
+        .side-nav ul li a.active {
+            background-color: rgb(99, 94, 94);
+            color: white;
+            font-weight: bold;
+            opacity: 1;
+        }
 
         .content {
             width: 75%;
-            margin-left: 5%; /* Space between side nav and content */
+            margin-left: 5%;
         }
+        
+
         .content-section {
             margin-bottom: 110px;
         }
+
         .content-section img {
             width: 850px;
             height: auto;
         }
+
         .content-section iframe {
             width: 900px;
-            height: 400px; /* Adjust height as needed */
+            height: 400px;
             border: none;
             border-radius: 10px;
         }
+
         .content-section h2 {
             margin: 20px 0 20px;
             font-size: 24px;
             color: #FFFFFF;
         }
+
         .content-section p {
             font-size: 16px;
-            color:  #FFFFFF;
+            color: #FFFFFF;
             line-height: 1.6;
         }
+
         .additional-images {
             display: flex;
-            gap: 15px; /* Space between images */
+            gap: 15px;
             margin-top: 15px;
         }
 
-/* Style for individual images */
         .additional-images img {
-            width: 50%; /* Make them take half the width each */
-            max-width: 420px; /* Optional: Set a maximum width */
-            object-fit: cover; /* Optional: Crop images to cover their box */
+            width: 50%;
+            max-width: 420px;
+            object-fit: cover;
         }
     </style>
 </head>
 <body>
-    <!-- Cover Image -->
-   
-
     <div class="cover-image">
-    <img src="{{ asset('img/logo.png') }}" alt="CWB Logo">
-
-    <a href="{{ url('/') }}" class="back-button">
-        <i class="fas fa-arrow-left"></i> <!-- Font Awesome arrow icon -->
-    </a>
-
-    <div class="cover-text">
-        <h1>@yield('cover-title')</h1>
-        <p>@yield('cover-paragraph')</p>
+        <img src="{{ asset('img/logo.png') }}" alt="CWB Logo">
+        <a href="{{ url('/') }}" class="back-button"><i class="fas fa-arrow-left"></i></a>
+        <div class="cover-text">
+            <h1>@yield('cover-title')</h1>
+            <p>@yield('cover-paragraph')</p>
+        </div>
     </div>
-</div>
-    <!-- Container for Side Nav and Content -->
-    <div class="container">
-        <!-- Side Navigation -->
-        <div class="side-nav">
-    <ul>
-        @foreach($contents as $content)
-            <li>
-                <a href="#{{ $content->section_id }}" class="{{ $loop->first ? 'active' : '' }}">
-                    {{ $content->side_nav_link_name }}
-                </a>
-            </li>
-        @endforeach
-    </ul>
-</div>
 
-        <!-- Content -->
+    <div class="container">
+        <div class="side-nav">
+            <ul>
+                @foreach($contents as $content)
+                    <li>
+                        <a href="#{{ $content->section_id }}"
+                           class="side-link {{ $loop->first ? 'active' : '' }}"
+                           onclick="setActiveAndShowContent(event, '{{ $content->section_id }}')">
+                            {{ $content->side_nav_link_name }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+
         <div class="content">
             @yield('content')
         </div>
     </div>
 
-    <!-- Smooth Scrolling Script -->
+    <!-- JavaScript -->
     <script>
-          // Fade-in effect on page load
-          document.addEventListener("DOMContentLoaded", function () {
-            document.body.style.opacity = "1";
-            document.querySelector(".container").style.opacity = "1";
-            document.querySelector(".container").style.transform = "translateY(0)";
+        document.addEventListener("DOMContentLoaded", function () {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach((section, index) => {
+                section.style.display = index === 0 ? 'block' : 'none';
+            });
         });
-        document.querySelectorAll('.side-nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
+
+        function setActiveAndShowContent(event, id) {
+            event.preventDefault();
+
+            // Remove 'active' from all links
+            document.querySelectorAll('.side-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Add 'active' to clicked link
+            event.currentTarget.classList.add('active');
+
+            // Show the corresponding content section
+            showContent(id);
+
+            // Scroll to the section
+            const targetSection = document.getElementById(id);
+            if (targetSection) {
                 targetSection.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-        
-            // Function to check which section is in view
-            document.addEventListener('DOMContentLoaded', function () {
-            const sideNavLinks = document.querySelectorAll('.side-nav a');
-            const contentSections = document.querySelectorAll('.content-section');
-
-            function updateActiveNav() {
-                contentSections.forEach((section, index) => {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 3) {
-                        sideNavLinks.forEach(link => {
-                            link.classList.remove('active');
-                            link.style.opacity = '0.5';
-                        });
-
-                        sideNavLinks[index].classList.add('active');
-                        sideNavLinks[index].style.opacity = '1';
-                    }
-                });
             }
+        }
 
-            let isScrolling;
-            window.addEventListener('scroll', function () {
-                window.clearTimeout(isScrolling);
-                isScrolling = setTimeout(updateActiveNav, 30);
+        function fadeOut(element, callback) {
+            element.style.opacity = 1;
+            const fadeEffect = setInterval(function () {
+                if (element.style.opacity > 0) {
+                    element.style.opacity -= 0.1;
+                } else {
+                    clearInterval(fadeEffect);
+                    element.style.display = "none";
+                    if (callback) callback();
+                }
+            }, 30);
+        }
+
+        function fadeIn(element) {
+            element.style.display = "block";
+            element.style.opacity = 0;
+            const fadeEffect = setInterval(function () {
+                if (element.style.opacity < 1) {
+                    element.style.opacity = parseFloat(element.style.opacity) + 0.1;
+                } else {
+                    clearInterval(fadeEffect);
+                }
+            }, 30);
+        }
+
+        function showContent(id) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                if (section.id !== id && section.style.display !== 'none') {
+                    fadeOut(section);
+                }
             });
 
-            updateActiveNav();
-        });
+            const target = document.getElementById(id);
+            if (target && target.style.display === 'none') {
+                setTimeout(() => fadeIn(target), 300);
+            }
+        }
     </script>
 </body>
 </html>
