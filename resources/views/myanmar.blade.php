@@ -26,31 +26,71 @@ Myanmar ミャンマー
 ミャンマーは、壮大なバガンの仏塔群に象徴される仏教文化と、多様な民族が織りなす豊かな伝統を持つ国です。近年は政治的混乱により社会は揺れ動いていますが、自分たちの道をなんとか切り開こうとする若者たちが活動しています。ヤンゴンメンバーは各々自分たちの得意なスキルを活かしながら、仕事を通じて自立を目指し活動を続けています。もちろん、停電やインターネットが通じないときもあります。それでも自分たちから新しい学びを求め続けていく姿勢を持っています。 ヤンゴンでは「ものづくり」「コミュニケーション」「日本文化」の三つが主な活動の柱です。
 @endsection
 <!-- Section 1: Image, Title, Paragraph -->
- @foreach($contents as $content)
+@foreach($contents as $content)
     <div id="{{ $content->section_id }}" class="content-section">
     <h2>{{ $content->title }}</h2>
-    <p>{{ $content->paragraph }}</p> <br>
 
+        @php
+            $blocks = $content->blocks->sortBy('order')->values(); // Reset keys for indexing
+            $i = 0;
+        @endphp
 
-        @if($content->media_type === 'image')
-            <img src="{{ asset('storage/' . $content->media_path) }}" alt="{{ $content->title }}">
-        @else
-            <iframe src="{{ $content->media_path }}" allowfullscreen></iframe>
-        @endif
+        @while($i < $blocks->count())
+            @php $block = $blocks[$i]; @endphp
 
-        <br>
-        {{-- ✅ Show image1 and image2 only if they exist --}}
-        @if($content->image1 || $content->image2)
-            <div class="additional-images">
-                @if($content->image1)
-                    <img src="{{ asset('storage/' . $content->image1) }}" class="img-fluid mt-2" alt="{{ $content->title }}">
-                @endif
+            @if($block->type === 'title')
+                <h2>{{ $block->content }}</h2>
 
-                @if($content->image2)
-                    <img src="{{ asset('storage/' . $content->image2) }}" class="img-fluid mt-2" alt="{{ $content->title }}">
-                @endif
-            </div>
-        @endif
+            @elseif($block->type === 'paragraph')
+                <p>{{ $block->content }}</p>
+
+            @elseif(
+                $i + 2 < $blocks->count() &&
+                $block->type === 'image' &&
+                $blocks[$i+1]->type === 'image' &&
+                $blocks[$i+2]->type === 'image'
+            )
+                {{-- ✅ Three consecutive images: special layout --}}
+                <div class="mb-4">
+                    {{-- Large image --}}
+                    <img src="{{ asset('storage/' . $block->media_path) }}"
+                         alt="Main image"
+                         class="img-fluid w-100 mb-3"
+                         style="height: 500px; object-fit: cover;">
+
+                    {{-- Additional images container --}}
+                    <div class="additional-images d-flex gap-3">
+                        <img src="{{ asset('storage/' . $blocks[$i+1]->media_path) }}"
+                             class="img-fluid"
+                             style="width: 50%; height: 250px; object-fit: cover;"
+                             alt="Additional image 1">
+
+                        <img src="{{ asset('storage/' . $blocks[$i+2]->media_path) }}"
+                             class="img-fluid"
+                             style="width: 50%; height: 250px; object-fit: cover;"
+                             alt="Additional image 2">
+                    </div>
+                </div>
+
+                @php $i += 3; continue; @endphp
+
+            @elseif($block->type === 'image')
+                {{-- ✅ Single image --}}
+                <img src="{{ asset('storage/' . $block->media_path) }}"
+                     alt="image block"
+                     class="img-fluid mb-3">
+
+            @elseif($block->type === 'video')
+                <iframe src="{{ $block->media_path }}"
+                        allowfullscreen
+                        class="w-100 mb-4"
+                        style="height: 400px;"></iframe>
+            @endif
+
+            @php $i++; @endphp
+        @endwhile
     </div>
 @endforeach
+
+
 @endsection

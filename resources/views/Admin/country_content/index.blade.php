@@ -10,7 +10,6 @@
             <th>Section ID</th>
             <th>Side Nav Link</th>
             <th>Title</th>
-            <th>Media</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -21,13 +20,6 @@
             <td>{{ $content->section_id }}</td>
             <td>{{ $content->side_nav_link_name }}</td>
             <td>{{ $content->title }}</td>
-            <td>
-                @if($content->media_type === 'image')
-                    <img src="{{ asset('storage/' . $content->media_path) }}" width="100">
-                @else
-                    <a href="{{ $content->media_path }}" target="_blank">View Video</a>
-                @endif
-            </td>
             <td>
             <a href="{{ route('admin.country_content.edit', $content->id) }}" class="btn btn-warning">Edit</a>
             <form action="{{ route('admin.country_content.destroy', $content->id) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete();">

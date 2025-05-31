@@ -2,131 +2,97 @@
 
 @section('content')
 
-<!-- Important Reminder -->
-<div class="alert alert-warning" style="background-color: #fff3cd; border-left: 5px solid #ff9800; padding: 15px; margin-bottom: 20px;">
-    <strong>Important Reminder:</strong> Please make sure the section ID and side navigation link name are the same. If using an image, upload a high-quality file. If using a video, provide a valid URL.
+<div class="alert alert-warning">
+    <strong>Important Reminder:</strong> Please make sure the section ID and side navigation link name are the same. The media section is optional and depends on the section design.
 </div>
 
-<h2>Create New Content</h2>
-<form action="{{ route('admin.country_content.store') }}" method="POST" enctype="multipart/form-data">
-    @csrf
+<div class="card shadow p-4">
+    <h3 class="mb-4">Create New Country Content</h3>
 
-    <!-- Country -->
-    <div class="form-group">
-        <label for="country_id">Country</label>
-        <select name="country_id" class="form-control" required>
-            @foreach($countries as $country)
-                <option value="{{ $country->id }}">{{ $country->name }}</option>
-            @endforeach
-        </select>
-    </div>
+    <form action="{{ route('admin.country_content.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
 
-    <!-- Section ID -->
-    <div class="form-group">
-        <label for="section_id">Section ID</label>
-        <input type="text" name="section_id" class="form-control" required>
-    </div>
-
-    <!-- Side Nav Link Name -->
-    <div class="form-group">
-        <label for="side_nav_link_name">Side Navigation Link Name</label>
-        <input type="text" name="side_nav_link_name" class="form-control" required>
-    </div>
-
-    <!-- Title -->
-    <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" name="title" class="form-control" required>
-    </div>
-
-    <!-- Content -->
-    <div class="form-group">
-        <label for="content">Content</label>
-        <textarea name="paragraph" class="form-control" required></textarea>
-    </div>
-
-    <!-- Media Type -->
-    <div class="form-group">
-        <label for="media_type">Media Type</label>
-        <select name="media_type" class="form-control" required onchange="toggleMediaInput(this.value)">
-            <option value="image">Image</option>
-            <option value="video">Video</option>
-        </select>
-    </div>
-
-    <!-- Media Input Section -->
-    <div id="image_input">
-
-        <!-- Main Image Block -->
-        <label>Main Image</label>
-        <div style="width: 100%; height: 300px; border: 2px dashed #aaa; position: relative; margin-bottom: 15px; overflow: hidden;">
-            <input type="file" name="image" id="mainImageInput" style="width: 100%; height: 100%; opacity: 0; cursor: pointer; position: absolute; z-index: 2;" onchange="previewImage(this, 'mainImagePreview')">
-            <img id="mainImagePreview" src="" style="width: 100%; height: 100%; object-fit: cover; display: none; position: absolute; top: 0; left: 0; z-index: 1;">
-            <span style="position: absolute; color: #888; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 0;">Click to upload main image</span>
+        <div class="mb-3">
+            <label for="country_id" class="form-label">Choose Country:</label>
+            <select class="form-select" name="country_id" required>
+                <option value="">Select Country</option>
+                @foreach ($countries as $country)
+                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                @endforeach
+            </select>
         </div>
 
-        <!-- Additional Images -->
-        <label>Additional Images</label>
-        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-            <!-- Image 1 -->
-            <div style="flex: 1; height: 150px; border: 2px dashed #aaa; position: relative; overflow: hidden;">
-                <input type="file" name="image1" id="image1Input" style="width: 100%; height: 100%; opacity: 0; cursor: pointer; position: absolute; z-index: 2;" onchange="previewImage(this, 'image1Preview')">
-                <img id="image1Preview" src="" style="width: 100%; height: 100%; object-fit: cover; display: none; position: absolute; top: 0; left: 0; z-index: 1;">
-                <span style="position: absolute; color: #888; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 0;">Image 1</span>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label" for="section_id">Section ID:</label>
+                <input type="text" class="form-control" name="section_id" required>
             </div>
 
-            <!-- Image 2 -->
-            <div style="flex: 1; height: 150px; border: 2px dashed #aaa; position: relative; overflow: hidden;">
-                <input type="file" name="image2" id="image2Input" style="width: 100%; height: 100%; opacity: 0; cursor: pointer; position: absolute; z-index: 2;" onchange="previewImage(this, 'image2Preview')">
-                <img id="image2Preview" src="" style="width: 100%; height: 100%; object-fit: cover; display: none; position: absolute; top: 0; left: 0; z-index: 1;">
-                <span style="position: absolute; color: #888; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 0;">Image 2</span>
+            <div class="col-md-6">
+                <label class="form-label" for="side_nav_link_name">Side Nav Link Name:</label>
+                <input type="text" class="form-control" name="side_nav_link_name" required>
             </div>
         </div>
-    </div>
 
-    <!-- Video Input -->
-    <div class="form-group" id="video_input" style="display: none;">
-        <label for="media_path">Video URL</label>
-        <input type="text" name="media_path" class="form-control">
-    </div>
+        <div class="mb-3">
+            <label class="form-label" for="title">General Section Title:</label>
+            <input type="text" class="form-control" name="title" required>
+        </div>
 
-    <!-- Buttons -->
-    <div class="button-group" style="margin-top:15px;">
-        <button type="submit" class="btn btn-primary">Save Content</button>
-        <a href="{{ route('admin.country_content.index') }}" class="btn btn-secondary">Cancel</a>
-    </div>
-</form>
+        <!-- Flexible Content Block -->
+        <div class="mb-4">
+            <label class="form-label">Content Blocks:</label>
+            <div id="blocks-container" class="d-flex flex-column gap-3"></div>
+            <button type="button" class="btn btn-outline-primary mt-2" onclick="addBlock()">+ Add Block</button>
+        </div>
 
-<!-- Error Messages -->
-@if ($errors->any())
-    <div class="alert alert-danger mt-3">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+        <button type="submit" class="btn btn-success">Save</button>
+    </form>
+</div>
 
-<!-- JavaScript -->
 <script>
-    function toggleMediaInput(value) {
-        document.getElementById('image_input').style.display = value === 'image' ? 'block' : 'none';
-        document.getElementById('video_input').style.display = value === 'video' ? 'block' : 'none';
+function addBlock() {
+    const container = document.getElementById('blocks-container');
+    const index = container.children.length;
+
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('p-3', 'border', 'rounded');
+
+    wrapper.innerHTML = `
+        <div class="row g-2">
+            <div class="col-md-4">
+                <select class="form-select" name="blocks[${index}][type]" onchange="handleBlockTypeChange(this, ${index})" required>
+                    <option value="">Choose Type</option>
+                    <option value="title">Title</option>
+                    <option value="paragraph">Paragraph</option>
+                    <option value="image">Image</option>
+                    <option value="video">Video</option>
+                </select>
+            </div>
+            <div class="col-md-8" id="block-input-${index}">
+                <!-- Dynamic input will be inserted here -->
+            </div>
+        </div>
+    `;
+
+    container.appendChild(wrapper);
+}
+
+function handleBlockTypeChange(select, index) {
+    const inputWrapper = document.getElementById(`block-input-${index}`);
+    const type = select.value;
+
+    let inputHTML = '';
+    if (type === 'title' || type === 'video') {
+        inputHTML = `<input type="text" class="form-control mt-2" name="blocks[${index}][content]" placeholder="Enter ${type}" required>`;
+    } else if (type === 'paragraph') {
+        inputHTML = `<textarea class="form-control mt-2" name="blocks[${index}][content]" rows="3" placeholder="Enter paragraph" required></textarea>`;
+    } else if (type === 'image') {
+        inputHTML = `<input type="file" class="form-control mt-2" name="blocks[${index}][media]" accept="image/*" required>`;
     }
 
-    function previewImage(input, previewId) {
-        const file = input.files[0];
-        const preview = document.getElementById(previewId);
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-            }
-            reader.readAsDataURL(file);
-        }
-    }
+    inputWrapper.innerHTML = inputHTML;
+}
 </script>
 
 @endsection
