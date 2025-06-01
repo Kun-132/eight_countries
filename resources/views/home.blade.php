@@ -140,7 +140,7 @@ footer .demo a {
         <div class="circle" style="top: 20%; left: 8%;" onclick="goToPage('japan')">
             <img src="{{ asset('img/japan.jpg') }}" alt="Japan">
         </div>
-        <div class="info" style="top: 31%; left: 7%;animation-delay: 0.5s; animation-name: fadeIn;">
+        <div class="info" style="top: 31%; left: 8%;animation-delay: 0.5s; animation-name: fadeIn;">
             <h2 style="color: #FF0000;">日本</h2>
         </div>
 
@@ -161,10 +161,10 @@ footer .demo a {
         </div>
         <!-- Foyer -->
         <div class="circle" style="top: 70%; left: 60%; animation-delay: 0.9s;" onclick="goToPage('foyer')">
-            <img src="{{ asset('img/cambodia.jpg') }}" alt="Foyer">
+            <img src="{{ asset('img/foyer.jpg') }}" alt="Foyer">
         </div>
-        <div class="info" style="top: 82%; left: 58%;animation-delay: 0.9s; animation-name: fadeIn;">
-            <h2 style="color: #88B04B;">ホワイエFOYER</h2>
+        <div class="info" style="top: 82%; left: 59%;animation-delay: 0.9s; animation-name: fadeIn;">
+            <h2 style="color: #88B04B;">FOYER</h2>
         </div>
 
         <!-- Phillipine -->

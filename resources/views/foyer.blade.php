@@ -8,7 +8,7 @@
         .cover-image {
     width: 100%;
     height: 700px; /* Adjust height as needed */
-    background: url('{{ asset('img/India Main.png') }}') no-repeat center center/cover;
+    background: url('{{ asset('img/foyer.jpg') }}') no-repeat center center/cover;
     position: relative;
     display: flex;
     align-items: flex-end; /* Align content at the bottom */
@@ -20,7 +20,7 @@
 
     </style>
     @section('cover-title')
-    ホワイエFOYER
+    FOYER
 @endsection
 
 @section('cover-paragraph')
