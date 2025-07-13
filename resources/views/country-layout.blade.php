@@ -1,4 +1,3 @@
-<!-- resources/views/myanmar-layout.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +6,7 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* [Keep all your existing desktop styles exactly as they are] */
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
@@ -141,7 +141,6 @@
             margin-left: 5%;
         }
         
-
         .content-section {
             margin-bottom: 110px;
         }
@@ -181,6 +180,110 @@
             max-width: 420px;
             object-fit: cover;
         }
+
+        /* Mobile-only changes (won't affect desktop at all) */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                margin-top: 30px;
+            }
+
+            .side-nav {
+                position: absolute;
+                top: 400px !important; /* Below cover image */
+                left: 0;
+                width: 100%;
+                padding: 10px 15px;
+                background-color: black;
+                z-index: 1000;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+                border-radius: 0;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .side-nav ul {
+                display: inline-flex;
+                gap: 10px;
+                padding-bottom: 5px; /* For scroll area */
+            }
+
+            .side-nav ul li {
+                margin: 0;
+                flex-shrink: 0; /* Prevent items from shrinking */
+            }
+
+            .side-nav ul li a {
+                padding: 8px 15px;
+                font-size: 14px;
+                white-space: nowrap;
+            }
+
+            .content {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 100px; /* Space for fixed nav */
+                padding-top: 20px;
+            }
+
+            /* Adjust cover image for mobile */
+            .cover-image img {
+                height: 60px;
+                top: 10px;
+                left: 10px;
+            }
+
+            .cover-text {
+                left: 15px;
+                top: 55%;
+                max-width: 90%;
+            }
+
+            .cover-text h1 {
+                font-size: 24px;
+            }
+
+            .cover-text p {
+                font-size: 14px;
+            }
+
+            .back-button {
+                top: 20%;
+                left: 5%;
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+
+            .content-section img {
+                width: 100%;
+            }
+
+            .content-section iframe {
+                width: 100%;
+                height: 220px;
+            }
+
+            .additional-images {
+                flex-direction: column;
+            }
+
+            .additional-images img {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+        }
+
+        /* For smaller mobile devices */
+        @media (max-width: 480px) {
+            .cover-image {
+                height: 250px;
+            }
+            
+            .side-nav {
+                top: 250px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -213,39 +316,62 @@
         </div>
     </div>
 
-    <!-- JavaScript -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
+            // Initialize sections
             const sections = document.querySelectorAll('.content-section');
             sections.forEach((section, index) => {
                 section.style.display = index === 0 ? 'block' : 'none';
             });
+
+            // Mobile-specific adjustments
+            if (window.innerWidth <= 768) {
+                adjustMobileLayout();
+            }
         });
+
+        function adjustMobileLayout() {
+            const coverImage = document.querySelector('.cover-image');
+            const sideNav = document.querySelector('.side-nav');
+            const content = document.querySelector('.content');
+            
+            if (coverImage && sideNav && content) {
+                // Set side nav position based on cover image height
+                sideNav.style.top = coverImage.offsetHeight + 'px';
+                
+                // Adjust content margin to account for fixed nav
+                content.style.marginTop = (sideNav.offsetHeight + 10) + 'px';
+            }
+        }
 
         function setActiveAndShowContent(event, id) {
             event.preventDefault();
 
-            // Remove 'active' from all links
+            // Update active link
             document.querySelectorAll('.side-link').forEach(link => {
                 link.classList.remove('active');
             });
-
-            // Add 'active' to clicked link
             event.currentTarget.classList.add('active');
 
-            // Show the corresponding content section
+            // Show content
             showContent(id);
 
-            // Scroll to the section
+            // Scroll to section (with offset for fixed nav on mobile)
             const targetSection = document.getElementById(id);
             if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
+                const offset = window.innerWidth <= 768 ? 
+                    document.querySelector('.side-nav').offsetHeight + 20 : 0;
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - offset,
+                    behavior: 'smooth'
+                });
             }
         }
 
         function fadeOut(element, callback) {
             element.style.opacity = 1;
-            const fadeEffect = setInterval(function () {
+            const fadeEffect = setInterval(function() {
                 if (element.style.opacity > 0) {
                     element.style.opacity -= 0.1;
                 } else {
@@ -259,7 +385,7 @@
         function fadeIn(element) {
             element.style.display = "block";
             element.style.opacity = 0;
-            const fadeEffect = setInterval(function () {
+            const fadeEffect = setInterval(function() {
                 if (element.style.opacity < 1) {
                     element.style.opacity = parseFloat(element.style.opacity) + 0.1;
                 } else {
@@ -281,6 +407,21 @@
                 setTimeout(() => fadeIn(target), 300);
             }
         }
+
+        // Handle window resize (only for mobile adjustments)
+        window.addEventListener('resize', function() {
+            if (window.innerWidth <= 768) {
+                adjustMobileLayout();
+            } else {
+                // Reset any mobile-specific styles if resizing back to desktop
+                const sideNav = document.querySelector('.side-nav');
+                const content = document.querySelector('.content');
+                if (sideNav && content) {
+                    sideNav.style.top = '';
+                    content.style.marginTop = '';
+                }
+            }
+        });
     </script>
 </body>
 </html>

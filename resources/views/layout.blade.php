@@ -16,16 +16,59 @@
             background: black;
             margin: 0;
             padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
         .header {
             position: absolute;
             top: 20px;
             left: 15px;
+            z-index: 100; /* Ensure logo stays above other elements */
         }
 
         .header img {
-            height: 100px;
+            height: 80px; /* Reduced for mobile */
+            width: auto; /* Maintain aspect ratio */
+        }
+
+        .content {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            overflow: hidden; /* Prevent content from overflowing */
+        }
+
+        footer {
+            position: relative;
+            text-align: center;
+            padding: 20px 0;
+            background: black;
+            z-index: 10;
+        }
+
+        footer p {
+            color: white;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .header {
+                top: 10px;
+                left: 10px;
+            }
+            
+            .header img {
+                height: 60px; /* Smaller logo on mobile */
+            }
+        }
+
+        /* Very small screens */
+        @media (max-width: 480px) {
+            .header img {
+                height: 50px;
+            }
         }
     </style>
 </head>
@@ -41,9 +84,9 @@
         @yield('content') <!-- Content will be injected here -->
     </div>
 
-    <!-- Footer (Optional) -->
+    <!-- Footer -->
     <footer>
-        <p style='color: white'>&copy; 2025 Copyright Reserved by CWB</p>
+        <p>&copy; 2025 Copyright Reserved by CWB</p>
     </footer>
 </body>
 </html>

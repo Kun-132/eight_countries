@@ -1,243 +1,183 @@
-@extends('layout') <!-- Extend the layout file -->
+@extends('layout')
 
-@section('title', 'Home Page') <!-- Set the title -->
+@section('title', 'Home Page')
 
-@section('content') <!-- Inject content into the layout -->
+@section('content')
 
 @section('styles')
 <style>
     .background {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  filter: brightness(0.8);
-}
-.floating-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.circle {
-  position: absolute;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  overflow: hidden; /* Ensures the image stays within the circle */
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-  animation: float 6s infinite ease-in-out, fadeIn 1.5s ease-out forwards;
-  opacity: 0; /* Start invisible */
-  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-  cursor: pointer;
-}
-@keyframes fadeIn {
-  from {
-      opacity: 0;
-  }
-  to {
-      opacity: 1;
-  }
-}
-.circle img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures the image covers the circle without distortion */
-  transition: transform 0.3s;
-}
-
-.circle:hover img {
-  transform: scale(1.2); /* Zoom effect on hover */
-}
-.circle:hover {
-  transform: scale(1.3);
-  box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.2);
-}
-.info {
-  position: absolute;
-  color: white;
-  padding: 10px 20px;
-  font-size: 14px;
-  pointer-events: none;
-  width: 300px;
-  text-align: left;
-  opacity: 0; /* Start invisible */
-  transform: translateY(0); /* No initial offset */
-  animation: fadeIn 1.5s ease-out forwards; /* Add animation */
-}
-
-.always-visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
-.info h2 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: bold;
-}
-.info p {
-  margin: 5px 0 0;
-  font-size: 14px;
-}
-.title-container {
-  position: absolute;
-  bottom: 40px;
-  left: 40px;
-  color: white;
-  opacity: 0; /* Start invisible */
-  animation: slideUp 1.5s ease-out 0.5s forwards; /* Animation */
-  width: 30%;
-}
-
-.title-container h1 {
-  margin: 0;
-  font-size: 35px;
-  font-weight: bold;
-}
-
-.title-container p {
-  margin: 10px 0 0;
-  font-size: 18px;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-/* Animation Keyframes */
-@keyframes slideUp {
-  from {
-      opacity: 0;
-      transform: translateY(50px);
-  }
-  to {
-      opacity: 1;
-      transform: translateY(0);
-  }
-}
-
-footer .demo {
-  position: absolute;
-  bottom: 10px;
-  width: 500px;
-  margin: 0 auto;
-}
-
-footer .demo a {
-  text-align: center;
-  color: var(--black);
-  text-decoration: none;
-  font-weight: 100;
-  border-bottom: 1px solid var(--black);
-}
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        filter: brightness(0.8);
+    }
+    .floating-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .circle {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        animation: float 6s infinite ease-in-out, fadeIn 1.5s ease-out forwards;
+        opacity: 0;
+        transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+        cursor: pointer;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    .circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s;
+    }
+    .circle:hover img { transform: scale(1.2); }
+    .circle:hover {
+        transform: scale(1.3);
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+        background: rgba(255, 255, 255, 0.2);
+    }
+    .info {
+        position: absolute;
+        color: white;
+        padding: 10px 20px;
+        font-size: 14px;
+        pointer-events: none;
+        width: 300px;
+        text-align: left;
+        opacity: 0;
+        transform: translateY(0);
+        animation: fadeIn 1.5s ease-out forwards;
+    }
+    .always-visible {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+    .info h2 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .info p {
+        margin: 5px 0 0;
+        font-size: 14px;
+    }
+    .title-container {
+        position: absolute;
+        bottom: 40px;
+        left: 40px;
+        color: white;
+        opacity: 0;
+        animation: slideUp 1.5s ease-out 0.5s forwards;
+        width: 30%;
+    }
+    .title-container h1 { margin: 0; font-size: 35px; font-weight: bold; }
+    .title-container p {
+        margin: 10px 0 0;
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(50px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .video-container {
+        text-align: center;
+        margin-top: 40px;
+        padding: 20px;
+        background-color: #f8f9fa;
+    }
+    .video-wrapper {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .video-title {
+        font-size: 20px;
+        color: #333;
+        margin-top: 15px;
+    }
+    @media (max-width: 768px) {
+        .circle { width: 50px; height: 50px; }
+        .info { width: 120px; font-size: 12px; padding: 5px 10px; }
+        .info h2 { font-size: 14px; }
+        .title-container { width: 80%; left: 10%; bottom: 20px; }
+        .title-container h1 { font-size: 24px; }
+        .title-container p { font-size: 14px; }
+        #circle-japan { top: 10% !important; left: 15% !important; }
+        #circle-indonesia { top: 10% !important; left: 45% !important; }
+        #circle-philippines { top: 10% !important; left: 75% !important; }
+        #info-japan { top: 20% !important; left: 16% !important; }
+        #info-indonesia { top: 20% !important; left: 40% !important; }
+        #info-philippines { top: 20% !important; left: 75% !important; }
+        #circle-srilanka { top: 30% !important; left: 15% !important; }
+        #circle-cambodia { top: 30% !important; left: 45% !important; }
+        #circle-india { top: 30% !important; left: 75% !important; }
+        #info-srilanka { top: 40% !important; left: 14% !important; }
+        #info-cambodia { top: 40% !important; left: 43% !important; }
+        #info-india { top: 40% !important; left: 75% !important; }
+        #circle-myanmar { top: 50% !important; left: 15% !important; }
+        #circle-foyer { top: 50% !important; left: 45% !important; }
+        #circle-nepal { top: 50% !important; left: 75% !important; }
+        #info-myanmar { top: 60% !important; left: 15% !important; }
+        #info-foyer { top: 60% !important; left: 43% !important; }
+        #info-nepal { top: 60% !important; left: 74% !important; }
+    }
 </style>
 @endsection
 
-
-<!-- Home page starts here -->
 <div class="background">
     <div class="floating-container">
-        <!-- Japan -->
-        <div class="circle" style="top: 20%; left: 8%;" onclick="goToPage('japan')">
-            <img src="{{ asset('img/japan.jpg') }}" alt="Japan">
+        @foreach([['japan','8%','20%','日本','#FF0000'],['indonesia','50%','15%','インドネシア','#6B5B95'],['cambodia','35%','40%','カンボジア','#88B04B'],['foyer','60%','70%','FOYER','#88B04B'],['philippines','80%','10%','フィリピン','#92A8D1'],['srilanka','25%','10%','スリランカ','#92A8D1'],['nepal','80%','65%','ネパール','#955251'],['india','60%','40%','インド','#FFA500'],['myanmar','45%','70%','ミャンマー','#FFD700']] as $c)
+        <div id="circle-{{ $c[0] }}" class="circle" style="left: {{ $c[1] }}; top: {{ $c[2] }};" onclick="goToPage('{{ $c[0] }}')">
+            <img src="{{ asset('img/'.$c[0].'.jpg') }}" alt="{{ ucfirst($c[0]) }}">
         </div>
-        <div class="info" style="top: 31%; left: 8%;animation-delay: 0.5s; animation-name: fadeIn;">
-            <h2 style="color: #FF0000;">日本</h2>
+        <div id="info-{{ $c[0] }}" class="info always-visible" style="left: calc({{ $c[1] }} - 1%); top: calc({{ $c[2] }} + 10%);">
+            <h2 style="color: {{ $c[4] }}">{{ $c[3] }}</h2>
         </div>
-
-        <!-- Indonesia -->
-        <div class="circle" style="top: 15%; left: 50%; animation-delay: 0.7s;" onclick="goToPage('indonesia')">
-            <img src="{{ asset('img/indonesia.jpg') }}" alt="Indonesia">
-        </div>
-        <div class="info" style="top: 26%; left: 48%;animation-delay: 0.7s; animation-name: fadeIn;">
-            <h2 style="color: #6B5B95;">インドネシア</h2>
-        </div>
-
-        <!-- Cambodia -->
-        <div class="circle" style="top: 40%; left: 35%; animation-delay: 0.9s;" onclick="goToPage('cambodia')">
-            <img src="{{ asset('img/cambodia.jpg') }}" alt="Cambodia">
-        </div>
-        <div class="info" style="top: 51%; left: 33%;animation-delay: 0.9s; animation-name: fadeIn;">
-            <h2 style="color: #88B04B;">カンボジア</h2>
-        </div>
-        <!-- Foyer -->
-        <div class="circle" style="top: 70%; left: 60%; animation-delay: 0.9s;" onclick="goToPage('foyer')">
-            <img src="{{ asset('img/foyer.jpg') }}" alt="Foyer">
-        </div>
-        <div class="info" style="top: 82%; left: 59%;animation-delay: 0.9s; animation-name: fadeIn;">
-            <h2 style="color: #88B04B;">FOYER</h2>
-        </div>
-
-        <!-- Phillipine -->
-        <div class="circle" style="top: 10%; left: 80%; animation-delay: 1.1s;" onclick="goToPage('philippines')">
-            <img src="{{ asset('img/philippines.jpg') }}" alt="Philippines">
-        </div>
-        <div class="info" style="top: 21%; left: 78%;animation-delay: 1.1s; animation-name: fadeIn;">
-            <h2 style="color: #92A8D1;">フィリピン</h2>
-        </div>
-        
-        <!-- SiriLanka -->
-        <div class="circle" style="top: 10%; left: 25%; animation-delay: 1.1s;" onclick="goToPage('srilanka')">
-            <img src="{{ asset('img/srilanka.jpg') }}" alt="Sri Lanka">
-        </div>
-        <div class="info" style="top: 21%; left: 23%;animation-delay: 1.1s; animation-name: fadeIn;">
-            <h2 style="color: #92A8D1;">スリランカ</h2>
-        </div>
-
-        <!-- Nepal -->
-        <div class="circle" style="top: 65%; left: 80%; animation-delay: 1.3s" onclick="goToPage('nepal')">
-            <img src="{{ asset('img/nepal.jpg') }}" alt="Nepal">
-        </div>
-        <div class="info" style="top: 76%; left: 79%;animation-delay: 1.3s; animation-name: fadeIn;">
-            <h2 style="color: #955251;">ネパール</h2>
-        </div>
-
-        <!-- India -->
-        <div class="circle" style="top: 40%; left: 60%; animation-delay: 1.5s" onclick="goToPage('india')">
-            <img src="{{ asset('img/india.jpg') }}" alt="India">
-        </div>
-        <div class="info" style="top: 51%; left: 59%;animation-delay: 1.5s; animation-name: fadeIn;">
-            <h2 style="color: #FFA500;">インド</h2>
-        </div>
-
-        <!-- Myanmar -->
-        <div class="circle" style="top: 70%; left: 45%;animation-delay: 1.7s" onclick="goToPage('myanmar')">
-            <img src="{{ asset('img/myanmar.jpg') }}" alt="Myanmar">
-        </div>
-        <div class="info" style="top: 81%; left: 43%;animation-delay: 1.7s; animation-name: fadeIn; ">
-            <h2 style="color: #FFD700">ミャンマー</h2>
-        </div>
+        @endforeach
     </div>
     <div class="title-container">
         <h1>CWB</h1>
         <p>CWBはコミュニテイーワークを広げていくアジア８か国のネットワークです。情報の交換だけでなく、現場（フィールド）での実践を重視し、違いを超えて（BEYOND）共生社会を目指します。そこから互いに学べますが問題も発生します。その課題解決の一つ一つが社会の変革になります。自分の常識を超え、組織の限界を超え、宗教も国境も超えて挑戦を続けることがCWBの使命です。</p>
-    </div>  
-</div>
-    
-    @php
-    $homeVideo = \App\Models\HomeVideo::first();
-@endphp
-
-@if($homeVideo)
-<div style="text-align: center; margin-top: 40px;">
-
-    <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; max-width: 90%; margin: 0 auto;">
-        <iframe 
-            src="{{ $homeVideo->video_url }}"
-            style="position: absolute; top: 40%; left: 50%; width: 70%; height: 70%; transform: translate(-50%, -50%); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
-            frameborder="0"
-            allowfullscreen>
-        </iframe>
-        <h3 style="font-size: 20px; color:white">{{ $homeVideo->video_title }}</h3>
-
     </div>
+</div>
 
+@php $homeVideo = \App\Models\HomeVideo::first(); @endphp
+@if($homeVideo)
+<div class="video-container">
+    <div class="video-wrapper">
+        <iframe src="{{ $homeVideo->video_url }}" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <h3 class="video-title">{{ $homeVideo->video_title }}</h3>
 </div>
 @endif
 
-
-    <script>
+<script>
     function goToPage(country) {
         window.location.href = `/${country}`;
     }
 </script>
-    @endsection
+@endsection
