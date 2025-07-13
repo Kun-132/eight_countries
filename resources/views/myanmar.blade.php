@@ -7,15 +7,22 @@
 <style>
     .cover-image {
         width: 100%;
-        height: 800px; /* Adjust height as needed */
+        height: 800px;
         background: url('{{ asset('img/Myanmar Main.jpg') }}') no-repeat center center/cover;
         position: relative;
         display: flex;
-        align-items: flex-end; /* Align content at the bottom */
+        align-items: flex-end;
         justify-content: center;
         color: white;
         text-align: center;
-        padding-bottom: 40px; /* Space for text or content */
+        padding-bottom: 40px;
+    }
+
+    @media (max-width: 768px) {
+        .cover-image {
+            height: 300px;
+            padding-bottom: 20px;
+        }
     }
 </style>
 @section('cover-title')
